@@ -1,8 +1,17 @@
 package view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
 //import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
@@ -20,9 +29,12 @@ public class MainWindow extends JFrame {
 	final int MENU_BAR_HEIGHT = 600;
 	final int MENU_BAR_WIDTH = WINDOW_WIDTH;
 	
-	final int CELL_SIDE = WINDOW_WIDTH/20 ;
+	final int CELL_SIDE = 40;
+	final int NUMBER_CELLS_SIDE = BOARD_WIDTH/CELL_SIDE;
 	
-	// buttons
+	TileRenderer[][] board = new TileRenderer[NUMBER_CELLS_SIDE][NUMBER_CELLS_SIDE];
+	
+	// buttons	
 	private final MyButton newGame = new MyButton("new game");
 	private final MyButton pause = new MyButton("pause");
 	private final MyButton reset = new MyButton("reset");
@@ -60,11 +72,11 @@ public class MainWindow extends JFrame {
 		}
 	
 	public JPanel makeBoardPanel() {
-		Color myColor = new Color(23, 44, 44);
-		JPanel panel = new JPanel();
-		//panel.setSize(BOARD_WIDTH, BOARD_HEIGHT);
-		panel.setBackground(myColor);
-		return panel;
+		JPanel bpanel = new JPanel();
+		bpanel.setBackground(Color.magenta);
+		bpanel.add(new BoardRenderer(BOARD_HEIGHT), BorderLayout.CENTER);
+		return bpanel;
+		
 	}
 	
 	public JPanel makeMenuPanel() {
@@ -101,6 +113,7 @@ public class MainWindow extends JFrame {
 	
 	public static void main(String[] args) {
 		MainWindow fenetre = new MainWindow();
+		
 	}
 	
 }

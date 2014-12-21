@@ -3,8 +3,8 @@ package model;
 public class Helper extends Opponent {
 	
 	// VARIABLES
-	final int MIN_MAGIC = 5;
-	int magic;
+	private final int MIN_MAGIC = 5;
+	private int magic;
 	
 	// CONSTRUCTOR
 	

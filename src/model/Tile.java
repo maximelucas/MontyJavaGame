@@ -4,10 +4,10 @@ public class Tile {
 	
 	// VARIABLES 
 	
-	String terrain;
-	Opponent opponent;
-	Player player;
-	String object;
+	private String terrain;
+	private Opponent opponent;
+	private Player player;
+	private String object;
 	
 	// CONSTRUCTORS
 	
@@ -39,8 +39,8 @@ public class Tile {
 		return (opponent != null);
 	}
 	
-	public void handleInteraction(Opponent opponent, Player player, String terrain) {
-		opponent.interactWith(player, terrain);
+	public void handleInteraction(Player player, String choice) {
+		this.opponent.interactWith(player, choice);
 	}
 	
 	// GETTERS 

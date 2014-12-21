@@ -6,12 +6,13 @@ public class Player {
 	
 	// VARIABLES ---------------------------
 	
-	Position position;
-	int score;
-	int timeLeft;
-	int fightingSkill;
-	int jokingSkill;
-	ArrayList<String> bag;
+	private Position position;
+	private int score;
+	private int timeLeft;
+	private int fightingSkill;
+	private int jokingSkill;
+	private String skillChoice;
+	private ArrayList<String> bag;
 	
 	
 	
@@ -107,6 +108,10 @@ public class Player {
 		return jokingSkill;
 	}
 	
+	public String getSkillChoice() {
+		return skillChoice;
+	}
+	
 	public ArrayList<String> getBag() {
 		return bag;
 	}
@@ -115,6 +120,10 @@ public class Player {
 	
 	public void setPosition(Position position) {
 		this.position = position;
+	}
+	
+	public void setSkillChoice(String choice) {
+		this.skillChoice = choice;
 	}
 	
 }

@@ -3,10 +3,10 @@ package model;
 public class Enemy extends Opponent{
 	
 	//  VARIABLES 
-	final int MAX_JOKING_THRESHOLD = 10;
-	final int MAX_FIGHTING_THRESHOLD = 10;
-	int jokeThreshold;
-	int fightThreshold;
+	private final int MAX_JOKING_THRESHOLD = 10;
+	private final int MAX_FIGHTING_THRESHOLD = 10;
+	private int jokeThreshold;
+	private int fightThreshold;
 	
 	// CONSTRUCTOR
 	
@@ -25,9 +25,9 @@ public class Enemy extends Opponent{
 	// METHODS
 	
 	public void interactWith(Player player, String choice) {
-		if (choice=="fight" && player.fightingSkill > fightThreshold) {
+		if (choice=="fight" && player.getFightingSkill() > fightThreshold) {
 			this.increaseFightingSkill(player);
-		} else if (choice=="joke" && player.jokingSkill > jokeThreshold) {
+		} else if (choice=="joke" && player.getJokingSkill() > jokeThreshold) {
 			this.increaseJokingSkill(player);
 		}
 	}
