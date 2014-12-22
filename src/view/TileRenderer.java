@@ -45,6 +45,7 @@ public class TileRenderer extends JButton {
 	}
 	
 	public void redraw(ImageIcon icon) {
+		if (player == null)
 		this.setIcon(icon);
 	}
 	

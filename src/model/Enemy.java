@@ -24,7 +24,8 @@ public class Enemy extends Opponent{
 
 	// METHODS
 	
-	public void interactWith(Player player, String choice) {
+	public void interactWith(Player player) {
+		String choice = player.getSkillChoice();
 		if (choice=="fight" && player.getFightingSkill() > fightThreshold) {
 			this.increaseFightingSkill(player);
 		} else if (choice=="joke" && player.getJokingSkill() > jokeThreshold) {
@@ -35,5 +36,9 @@ public class Enemy extends Opponent{
 	// GETTERS
 	
 	// SETTERS
+	
+	public String toString() {
+		return "enem";
+	}
 	
 }

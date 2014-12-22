@@ -5,7 +5,7 @@ public abstract class Opponent {
 	// VARIBABLES
 	final int MAX_BONUS = 3;
 	private int bonus;
-	private Player player;
+	//private Player player;
 	
 	// CONSTRUCTOR
 	
@@ -19,7 +19,7 @@ public abstract class Opponent {
 	
 	// METHODS
 	
-	public abstract void interactWith(Player player, String choice);
+	public abstract void interactWith(Player player);
 	
 	public void increaseFightingSkill(Player player) {
 		player.increaseFightingSkill(bonus);
@@ -35,9 +35,9 @@ public abstract class Opponent {
 		return bonus;
 	}
 	
-	public Player getPlayer() {
-		return player;
-	}
+	//public Player getPlayer() {
+	//	return player;
+	//}
 	
 	// SETTERS
 
@@ -45,8 +45,8 @@ public abstract class Opponent {
 		this.bonus = bonus;
 	}
 	
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
+	//public void setPlayer(Player player) {
+	//	this.player = player;
+	//}
 }
 

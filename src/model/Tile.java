@@ -39,8 +39,8 @@ public class Tile {
 		return (opponent != null);
 	}
 	
-	public void handleInteraction(Player player, String choice) {
-		this.opponent.interactWith(player, choice);
+	public void handleInteraction(Player player) {
+		this.opponent.interactWith(player);
 	}
 	
 	// GETTERS 
@@ -55,6 +55,10 @@ public class Tile {
 	
 	public Player getPlayer() {	
 		return player;
+	}
+	
+	public String getObject() {
+		return object;
 	}
 
 	// SETTERS 

@@ -3,12 +3,16 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import model.Board;
 import model.Position;
 
 @SuppressWarnings("serial")
-public class BoardRenderer extends JPanel {
+public class BoardRenderer extends JPanel implements Observer {
 	
 	// VARIABLES 
 	
@@ -44,14 +48,22 @@ public class BoardRenderer extends JPanel {
 		
 	}
 	
-	public void update(Position oldPos, Position newPos) {
-		int oldX = oldPos.getX();
-		int oldY = oldPos.getY();
-		int newX = oldPos.getX();
-		int newY = oldPos.getY();
-		tiles[oldX][oldY].redraw();
-		tiles[newX][newY].redraw();
+	// implement Observer method update
+	public void update(Board board, Object object) {
+		if (object instanceof Position) {
+			Position oldPos = (Position) object;
+			Position newPos = board.getActivePosition();
+			int oldX = oldPos.getX();
+			int oldY = oldPos.getY();
+			int newX = oldPos.getX();
+			int newY = oldPos.getY();
+			tiles[oldX][oldY].redraw();
+			tiles[newX][newY].redraw();
+			
+		}
 	}
+	
+	
 	
 	// GETTERS
 	

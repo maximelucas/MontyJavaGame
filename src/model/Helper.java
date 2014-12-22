@@ -20,7 +20,8 @@ public class Helper extends Opponent {
 
 	// METHODS
 	
-	public void interactWith(Player player, String choice) {
+	public void interactWith(Player player) {
+		String choice = player.getSkillChoice();
 		if (choice=="fight") {
 			this.increaseFightingSkill(player);
 		} else if (choice=="joke") {
@@ -42,5 +43,7 @@ public class Helper extends Opponent {
 	
 	// SETTERS
 
-
+	public String toString() {
+		return "help";
+	}
 }

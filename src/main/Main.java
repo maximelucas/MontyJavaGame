@@ -10,6 +10,8 @@ public class Main {
         Controller theController = new Controller(theView,theModel);
         theView.setVisible(true);
         */        
+		
+		Board board = new Board();
 	}
 
 }

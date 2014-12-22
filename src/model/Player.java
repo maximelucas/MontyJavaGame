@@ -126,4 +126,7 @@ public class Player {
 		this.skillChoice = choice;
 	}
 	
+	public String toString() {
+		return "play";
+	}
 }
