@@ -44,7 +44,9 @@ public class BoardRenderer extends JPanel implements Observer {
 	
 	// implement Observer method update
 	public void update(Observable observable, Object object) {
+		System.out.print("board view notified of initialisation 1 \n");
 		Board board = (Board) observable;
+		
 		if (object instanceof Position) {
 			Position oldPos = (Position) object;
 			Position newPos = board.getActivePosition();
@@ -57,10 +59,28 @@ public class BoardRenderer extends JPanel implements Observer {
 			tileRenderers[oldX][oldY].update(oldTile);
 			tileRenderers[newX][newY].update(newTile);
 			
+		} else if (object==null) {
+			System.out.print("board view notified of initialisation 2\n");
+			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
+		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
+		 	 		System.out.print(""+i);
+	 	 			tileRenderers[i][j].update(board.getTile(i, j));
+	 	 		}
+	 	 	}
+		} else {
+			System.out.print("\n what happens ?\n");
 		}
 	}
 	
-	
+	public void update(Observable observable) {
+		System.out.print("board view notified of initialisation 2");
+		Board board = (Board) observable;
+		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
+	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
+ 	 			tileRenderers[i][j].update(board.getTile(i, j));
+ 	 		}
+ 	 	}
+	}
 	
 	// GETTERS
 	

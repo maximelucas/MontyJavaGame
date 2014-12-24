@@ -2,12 +2,10 @@ package model;
 
 import java.util.Observable;
 
-import view.MainWindow;
-
 public class Board extends Observable {
 	
 	
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
 
     	
     	// View theView = new View();
@@ -15,43 +13,45 @@ public class Board extends Observable {
         //Controller theController = new Controller(theView,theModel);
         //theView.setVisible(true);
                 
+//		Board board = new Board();
+//		MainWindow gui = new MainWindow();
+//		board.grid[1][1].setOpponent(new Enemy());
+//		
+//		//MainWindow gui = new MainWindow();
+//		System.out.print(board.getPlayer());
+//
+//		board.makeMove(new Position(1,0));
+//		board.handleInteraction(board.getPlayer());
+//		System.out.print(board.getPlayer());
+//
+//		board.makeMove(new Position(1,1));
+//		board.handleInteraction(board.getPlayer());
+//		System.out.print(board.getPlayer());
+//		
+//		System.out.print(gui.getContentPane().getComponent(1));
 		
-		Board board = new Board();
-		MainWindow gui = new MainWindow();
-		board.grid[1][1].setOpponent(new Enemy());
-		
-		//MainWindow gui = new MainWindow();
-		System.out.print(board.getPlayer());
 
-		board.makeMove(new Position(1,0));
-		board.handleInteraction(board.getPlayer());
-		System.out.print(board.getPlayer());
-
-		board.makeMove(new Position(1,1));
-		board.handleInteraction(board.getPlayer());
-		System.out.print(board.getPlayer());
-
-	}
+//	}
 	
-	public void printState() {
-		System.out.print("test\n");
-		for (int i=0; i<WIDTH; i++) {
-			for (int j=0; j<HEIGHT; j++) {
-				if (grid[i][j].getPlayer() != null) {
-					System.out.print(getGrid()[i][j].getPlayer()+" ");
-				} else {
-				System.out.print(getGrid()[i][j].getOpponent()+" ");
-				}
-			}
-			System.out.print("\n");
-			
-		}
-	}
+//	public void printState() {
+//		System.out.print("test\n");
+//		for (int i=0; i<WIDTH; i++) {
+//			for (int j=0; j<HEIGHT; j++) {
+//				if (grid[i][j].getPlayer() != null) {
+//					System.out.print(getGrid()[i][j].getPlayer()+" ");
+//				} else {
+//				System.out.print(getGrid()[i][j].getOpponent()+" ");
+//				}
+//			}
+//			System.out.print("\n");
+//			
+//		}
+//	}
 	
 	// VARIABLES 
 	
-	final int WIDTH = 20;
-	final int HEIGHT = 20;
+	final int WIDTH = 10;
+	final int HEIGHT = 10;
 	final int TOTAL_NUMBER_OF_ENEMIES = 4;
 	final int TOTAL_NUMBER_OF_HELPERS = 4;	
 	int DIFFICULTY_LEVEL = 1;
@@ -69,9 +69,11 @@ public class Board extends Observable {
 	
 	// CONSTRUCTOR
 	
-	public Board() {
+	
+	// METHODS 
+	
+public void initBoard() {
 		
-
 		int numberOfHelpers = 0;
 		int numberOfEnemies = 0;
 		
@@ -106,9 +108,12 @@ public class Board extends Observable {
 				numberOfHelpers ++;
 			}
 		}
+		this.setChanged();
+		this.notifyObservers();
+		System.out.print("notification sent");
 	}
 
-	// METHODS 
+	
 	
 	public boolean isGameOver() {
 		return (player.getTimeLeft()==0);
@@ -175,6 +180,8 @@ public class Board extends Observable {
 		}
 		else 
 			System.out.print("no interaction possible \n");
+		this.setChanged();
+		this.notifyObservers(player);
 		
 	}
 	// GETTERS
@@ -200,4 +207,6 @@ public class Board extends Observable {
 	}
 	
 	// SETTERS 
+	
+	
 }

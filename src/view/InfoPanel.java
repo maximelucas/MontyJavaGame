@@ -1,24 +1,37 @@
 package view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class InfoPanel extends JPanel {
+import model.Board;
+import model.Player;
+
+@SuppressWarnings("serial")
+public class InfoPanel extends JPanel implements Observer {
 	
 	// VARIABLES 
 	
 	// player state info
+	private JPanel playerInfoPanel = new JPanel();
 	private final JLabel tTimeLeft = new JLabel("Steps left");
 	private final JLabel tJokingSkill = new JLabel("Joking skill");
 	private final JLabel tFightingSkill = new JLabel("Fighting skill");
 	private final JLabel tBag = new JLabel("Bag");
 	private final JLabel tScore = new JLabel("Score");
+	// creating the label with the actual value of the variables
+	private JLabel vTimeLeft = new JLabel("");
+	private JLabel vJokingSkill= new JLabel("");
+	private JLabel vFightingSkill = new JLabel("");
+	private JLabel vBag = new JLabel("");
+	private JLabel vScore = new JLabel("");
 	
-	private JLabel lInfoMessage = new JLabel("testtestestsetes");
+	private JLabel lInfoMessage = new JLabel("New game !");
 	
 	// CONSTRUCTOR
 	
@@ -39,15 +52,9 @@ public class InfoPanel extends JPanel {
 	}
 	
 	public JPanel makePlayerInfoPanel() {
-		JPanel panel = new JPanel();
+		JPanel panel = playerInfoPanel;
 		panel.setLayout(new GridLayout(5,2));
 		panel.setBackground(Color.red);
-		// creating the label with the actual value of the variables
-		JLabel vTimeLeft = new JLabel("");
-		JLabel vJokingSkill= new JLabel("");
-		JLabel vFightingSkill = new JLabel("");
-		JLabel vBag = new JLabel("");
-		JLabel vScore = new JLabel("");
 		
 		// adding all the labels to the panel
 		panel.add(tTimeLeft);
@@ -62,5 +69,44 @@ public class InfoPanel extends JPanel {
 		panel.add(vScore);
 		return panel;
 	}
+	
+	@Override
+	public void update(Observable observable, Object object) {
+		Board board = (Board) observable;
+		if (object instanceof Player || object==null) {
+			this.setVTimeLeft(board.getPlayer().getTimeLeft());
+			this.setVJokingSkill(board.getPlayer().getJokingSkill());
+			this.setVFightingSkill(board.getPlayer().getFightingSkill());
+			this.setVBag(board.getPlayer().getBag());
+			this.setVScore(board.getPlayer().getScore());
+		}
+	}
+	
+	// GETTERS
+	
+	// SETTERS 
+	
+	public void setVTimeLeft(int value) {
+		this.vTimeLeft.setText(Integer.toString(value));
+	}
+	
+	public void setVJokingSkill(int value) {
+		this.vJokingSkill.setText(Integer.toString(value));
+	}
+	
+	public void setVFightingSkill(int value) {
+		this.vFightingSkill.setText(Integer.toString(value));
+	}
 
+	public void setVBag(ArrayList<String> bag) {
+		String content = "";
+		for (String element : bag) {
+			content += element;
+		}
+		this.vBag.setText(content);
+	}
+	
+	public void setVScore(int value) {
+		this.vScore.setText(Integer.toString(value));
+	}
 }

@@ -1,9 +1,10 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
@@ -24,38 +25,40 @@ public class MainWindow extends JFrame {
 	private final int CELL_SIDE = 40;
 	private final int NUMBER_CELLS_SIDE = BOARD_WIDTH/CELL_SIDE;
 	
-	//TileRenderer[][] board = new TileRenderer[NUMBER_CELLS_SIDE][NUMBER_CELLS_SIDE];
+	private BoardRenderer boardRenderer = new BoardRenderer();
+	private MenuBar menuBar = new MenuBar();
+	private InfoPanel infoPanel = new InfoPanel();
 	
-
+	private KeyListener keyListener;
 	
 	// CONSTRUCTOR
 	
 	public MainWindow() {
 		super();
 		this.setTitle(NAME);
-		//this.setMinimumSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-				
-		this.add(makeBoardPanel(), BorderLayout.CENTER);
-		this.add(new MenuBar(), BorderLayout.NORTH);
-		this.add(new InfoPanel(), BorderLayout.SOUTH);
-        
+		this.add(boardRenderer, BorderLayout.CENTER);
+		this.add(menuBar, BorderLayout.NORTH);
+		this.add(infoPanel, BorderLayout.SOUTH);
+        // ensure minimum size show all the components
 		this.pack();
         this.setMinimumSize(getSize());
-        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+        this.setFocusable(true);
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.setVisible(true);
 		}
 	
-	public JPanel makeBoardPanel() {
-		JPanel bpanel = new JPanel();
-		bpanel.setBackground(Color.magenta);
-		bpanel.add(new BoardRenderer(), BorderLayout.CENTER);
-		return bpanel;
-		
-	}
-	
-
-	
 	// GETTERS 
 	
+	public BoardRenderer getBoardRenderer() {
+		return boardRenderer;
+	}
+	
+	public InfoPanel getInfoPanel() {
+		return infoPanel;
+	}
+	
+	public void setKeyListener(KeyListener keyListener) {
+		this.keyListener = keyListener;
+	}
 }

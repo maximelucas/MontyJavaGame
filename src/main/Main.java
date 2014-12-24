@@ -1,17 +1,18 @@
 package main;
 
+import model.Board;
+import view.MainWindow;
+import controller.Controller;
+
 public class Main {
 
-	//public static void main(String[] args) {
-
-    	
-    	/* View theView = new View();
-        Model theModel = new Model();
-        Controller theController = new Controller(theView,theModel);
-        theView.setVisible(true);
-        */        
+	public static void main(String[] args) {
+		Board board = new Board();
+		MainWindow gui = new MainWindow();
+		Controller controller = new Controller(board, gui);
 		
-	//	Board board = new Board();
-	//}
+		System.out.print("\n"+board.countObservers());
+		System.out.print("\n"+board.countObservers());
+	}
 
 }
