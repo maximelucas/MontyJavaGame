@@ -17,10 +17,10 @@ public class BoardRenderer extends JPanel implements Observer {
 	// VARIABLES 
 	
 	// we want a square board with a fixed number of cells 
-	int BOARD_HEIGHT;
-	int BOARD_WIDTH = BOARD_HEIGHT;
-	int NUMBER_CELLS_PER_SIDE = 10;
-	int CELL_SIZE = BOARD_HEIGHT/NUMBER_CELLS_PER_SIDE;
+	private final int BOARD_HEIGHT = 500;
+	private final int BOARD_WIDTH = BOARD_HEIGHT;
+	private final int NUMBER_CELLS_PER_SIDE = 10;
+	private final int CELL_SIZE = BOARD_HEIGHT/NUMBER_CELLS_PER_SIDE;
 	
 	TileRenderer[][] tileRenderers = new TileRenderer[NUMBER_CELLS_PER_SIDE][NUMBER_CELLS_PER_SIDE];
 	private Icons icons = new Icons();
@@ -28,27 +28,19 @@ public class BoardRenderer extends JPanel implements Observer {
 	
 	// CONSTRUCTORS
 	
-	public BoardRenderer(int height) {
-		BOARD_HEIGHT = height ;
-		BOARD_WIDTH = BOARD_HEIGHT;
+	public BoardRenderer() {
 		this.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 		this.setLayout(new GridLayout(NUMBER_CELLS_PER_SIDE, NUMBER_CELLS_PER_SIDE));
 		
 		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
 				tileRenderers[i][j] = new TileRenderer();
-				//tiles[i][j].draw(Color.green); //, new ImageIcon("src/view/images/p.png"));
 	 			this.add(tileRenderers[i][j]);
 			}
 		}
 	}	
 	
 	// METHODS
-	
-	public void initBoard() {
-		
-		
-	}
 	
 	// implement Observer method update
 	public void update(Observable observable, Object object) {
