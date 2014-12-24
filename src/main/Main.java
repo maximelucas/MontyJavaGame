@@ -2,7 +2,7 @@ package main;
 
 public class Main {
 
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
 
     	
     	/* View theView = new View();
@@ -11,7 +11,7 @@ public class Main {
         theView.setVisible(true);
         */        
 		
-		Board board = new Board();
-	}
+	//	Board board = new Board();
+	//}
 
 }

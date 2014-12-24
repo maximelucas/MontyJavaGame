@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 //import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -109,11 +108,6 @@ public class MainWindow extends JFrame {
 	}
 
 	
-	// ELEMENTS
-	
-	public static void main(String[] args) {
-		MainWindow fenetre = new MainWindow();
-		
-	}
+	// GETTERS 
 	
 }

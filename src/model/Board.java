@@ -17,36 +17,35 @@ public class Board extends Observable {
                 
 		
 		Board board = new Board();
-		System.out.print("test\n");
-		for (int i=0; i<board.WIDTH; i++) {
-			for (int j=0; j<board.HEIGHT; j++) {
-				if (board.grid[i][j].getPlayer() != null) {
-					System.out.print(board.getGrid()[i][j].getPlayer()+" ");
-				} else {
-				System.out.print(board.getGrid()[i][j].getOpponent()+" ");
-				}
-			}
-			System.out.print("\n");
-			
-		}
-		
 		MainWindow gui = new MainWindow();
-
-		board.makeMove(new Position(0,1));
+		board.grid[1][1].setOpponent(new Enemy());
 		
+		//MainWindow gui = new MainWindow();
+		System.out.print(board.getPlayer());
+
+		board.makeMove(new Position(1,0));
+		board.handleInteraction(board.getPlayer());
+		System.out.print(board.getPlayer());
+
+		board.makeMove(new Position(1,1));
+		board.handleInteraction(board.getPlayer());
+		System.out.print(board.getPlayer());
+
+	}
+	
+	public void printState() {
 		System.out.print("test\n");
-		for (int i=0; i<board.WIDTH; i++) {
-			for (int j=0; j<board.HEIGHT; j++) {
-				if (board.grid[i][j].getPlayer() != null) {
-					System.out.print(board.getGrid()[i][j].getPlayer()+" ");
+		for (int i=0; i<WIDTH; i++) {
+			for (int j=0; j<HEIGHT; j++) {
+				if (grid[i][j].getPlayer() != null) {
+					System.out.print(getGrid()[i][j].getPlayer()+" ");
 				} else {
-				System.out.print(board.getGrid()[i][j].getOpponent()+" ");
+				System.out.print(getGrid()[i][j].getOpponent()+" ");
 				}
 			}
 			System.out.print("\n");
 			
 		}
-		
 	}
 	
 	// VARIABLES 
@@ -133,10 +132,10 @@ public class Board extends Observable {
 	public boolean isWithinBounds(Position destination) {
 		int x = destination.getX();
 		int y = destination.getY();
-		return (1 <= x 
-				&& x <= WIDTH 
-				&& 1 <= y 
-				&& y <= HEIGHT);
+		return (0 <= x 
+				&& x < WIDTH 
+				&& 0 <= y 
+				&& y < HEIGHT);
 	}
 	
 	public boolean isAdjacent(Position destination) {
@@ -163,6 +162,8 @@ public class Board extends Observable {
 			this.setChanged();
 			this.notifyObservers(player.getPosition()); // sends new position
 			activePosition = player.getPosition();
+		} else {
+			System.out.print("not a valid destination !");
 		}
 	}
 	
@@ -172,6 +173,8 @@ public class Board extends Observable {
 		if (grid[x][y].isInteractionPossible()) {
 			grid[x][y].handleInteraction(player);
 		}
+		else 
+			System.out.print("no interaction possible \n");
 		
 	}
 	// GETTERS
@@ -182,6 +185,10 @@ public class Board extends Observable {
 	
 	public Tile[][] getGrid() {
 		return grid;
+	}
+	
+	public Tile getTile(int i, int j) {
+		return grid[i][j];
 	}
 	
 	public Trophy getTrophy() {

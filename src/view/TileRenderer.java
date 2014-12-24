@@ -6,27 +6,34 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import model.Enemy;
+import model.Helper;
+import model.Tile;
+import model.Trophy;
+
+
 @SuppressWarnings("serial")
 public class TileRenderer extends JButton {
 	
 	
 	// VARIABLES
 	 
-	int TILE_SIZE;
-	Color color = new Color(20, 20, 40);
-	ImageIcon icon;
-	
+	public final int TILE_SIZE = 40;
+	public final Color grassGreen = new Color(25, 143, 37);
+	public final Color raodGrey = new Color(119, 136, 153);
+	private ImageIcon icon;
+	//private static Icons icons = new Icons();
 	// CONSTRUCTOR
 	
 	public TileRenderer() {
 		this.setMargin(new Insets(0,0,0,0));
-		this.setBackground(color);
+		this.setBackground(grassGreen);
 	}
 	
 	public TileRenderer(String text) {
 		super(text);
 		this.setMargin(new Insets(0,0,0,0));
-		this.setBackground(color);
+		this.setBackground(grassGreen);
 	}
 	
 	
@@ -43,10 +50,19 @@ public class TileRenderer extends JButton {
 			this.setIcon(icon);
 		}
 	}
-	
-	public void redraw(ImageIcon icon) {
-		if (player == null)
-		this.setIcon(icon);
+		
+	public void update(Tile tile) {
+		if (tile.getPlayer()==null && tile.getOpponent()==null) {
+			this.setIcon(icon);
+		} else if (tile.getPlayer()!=null && tile.getOpponent()==null) {
+			this.setIcon(Icons.player);
+		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Helper) {
+			this.setIcon(Icons.helper);
+		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Enemy) {
+			this.setIcon(Icons.enemy);
+		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Trophy) {
+			this.setIcon(Icons.trophy);
+		}
 	}
 	
 	

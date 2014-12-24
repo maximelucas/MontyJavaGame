@@ -3,14 +3,15 @@ package model;
 public class Trophy extends Opponent {
 
 	// VARIABLES 
-	public final int JOKING_THRESHOLD = 15;
-	public final int FIGHTING_THRESHOLD = 15;
+	private final static int JOKING_THRESHOLD = 15;
+	private final static int FIGHTING_THRESHOLD = 15;
+	private final static int BONUS = 25;
 	private boolean won = false;
-	
 	
 	// CONSTRUCTOR
 	
 	public Trophy() {
+		super(BONUS);
 	}
 	
 	// METHODS
@@ -18,8 +19,10 @@ public class Trophy extends Opponent {
 	public void interactWith(Player player) {
 		if (player.getJokingSkill() > JOKING_THRESHOLD) {
 			won = true;
+			player.increaseScore(this.getBonus());
 		} else if (player.getFightingSkill() > FIGHTING_THRESHOLD) {
 			won = true;
+			player.increaseScore(this.getBonus());
 		}
 	}
 	

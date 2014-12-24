@@ -11,7 +11,7 @@ public class Player {
 	private int timeLeft;
 	private int fightingSkill;
 	private int jokingSkill;
-	private String skillChoice;
+	private String skillChoice = "joke";
 	private ArrayList<String> bag;
 	
 	
@@ -55,7 +55,8 @@ public class Player {
 	// METHODS ------------------------------
 	
 	public void move(Position destination) {
-		this.setPosition(destination);
+		setPosition(destination);
+		timeLeft -= 1;
 	}
 	
 	public void increaseScore(int bonus) {
@@ -127,6 +128,6 @@ public class Player {
 	}
 	
 	public String toString() {
-		return "play";
+		return "play \t"+position+"\t"+timeLeft+"\t"+jokingSkill+"\t"+score+"\n";
 	}
 }

@@ -1,15 +1,15 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import model.Board;
 import model.Position;
+import model.Tile;
 
 @SuppressWarnings("serial")
 public class BoardRenderer extends JPanel implements Observer {
@@ -22,7 +22,9 @@ public class BoardRenderer extends JPanel implements Observer {
 	int NUMBER_CELLS_PER_SIDE = 10;
 	int CELL_SIZE = BOARD_HEIGHT/NUMBER_CELLS_PER_SIDE;
 	
-	TileRenderer[][] tiles = new TileRenderer[NUMBER_CELLS_PER_SIDE][NUMBER_CELLS_PER_SIDE];
+	TileRenderer[][] tileRenderers = new TileRenderer[NUMBER_CELLS_PER_SIDE][NUMBER_CELLS_PER_SIDE];
+	private Icons icons = new Icons();
+
 	
 	// CONSTRUCTORS
 	
@@ -34,9 +36,9 @@ public class BoardRenderer extends JPanel implements Observer {
 		
 		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-				tiles[i][j] = new TileRenderer();
-				tiles[i][j].draw(Color.red, new ImageIcon("src/view/images/p.png"));
-	 			this.add(tiles[i][j]);
+				tileRenderers[i][j] = new TileRenderer();
+				//tiles[i][j].draw(Color.green); //, new ImageIcon("src/view/images/p.png"));
+	 			this.add(tileRenderers[i][j]);
 			}
 		}
 	}	
@@ -49,16 +51,19 @@ public class BoardRenderer extends JPanel implements Observer {
 	}
 	
 	// implement Observer method update
-	public void update(Board board, Object object) {
+	public void update(Observable observable, Object object) {
+		Board board = (Board) observable;
 		if (object instanceof Position) {
 			Position oldPos = (Position) object;
 			Position newPos = board.getActivePosition();
 			int oldX = oldPos.getX();
 			int oldY = oldPos.getY();
-			int newX = oldPos.getX();
-			int newY = oldPos.getY();
-			tiles[oldX][oldY].redraw();
-			tiles[newX][newY].redraw();
+			int newX = newPos.getX();
+			int newY = newPos.getY();
+			Tile oldTile = board.getTile(oldX, oldY);
+			Tile newTile = board.getTile(newX,  newY);
+			tileRenderers[oldX][oldY].update(oldTile);
+			tileRenderers[newX][newY].update(newTile);
 			
 		}
 	}
@@ -66,6 +71,10 @@ public class BoardRenderer extends JPanel implements Observer {
 	
 	
 	// GETTERS
+	
+	public Icons getIcons() {
+		return icons;
+	}
 	
 	
 	//SETTERS
