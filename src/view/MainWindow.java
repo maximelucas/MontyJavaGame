@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
@@ -26,10 +27,11 @@ public class MainWindow extends JFrame {
 	private final int NUMBER_CELLS_SIDE = BOARD_WIDTH/CELL_SIDE;
 	
 	private BoardRenderer boardRenderer = new BoardRenderer();
-	private MenuBar menuBar = new MenuBar();
+	private MenuPanel menuPanel = new MenuPanel();
 	private InfoPanel infoPanel = new InfoPanel();
 	
 	private KeyListener keyListener;
+	private ActionListener actionListener;
 	
 	// CONSTRUCTOR
 	
@@ -37,7 +39,7 @@ public class MainWindow extends JFrame {
 		super();
 		this.setTitle(NAME);
 		this.add(boardRenderer, BorderLayout.CENTER);
-		this.add(menuBar, BorderLayout.NORTH);
+		this.add(menuPanel, BorderLayout.NORTH);
 		this.add(infoPanel, BorderLayout.SOUTH);
         // ensure minimum size show all the components
 		this.pack();
@@ -58,7 +60,11 @@ public class MainWindow extends JFrame {
 		return infoPanel;
 	}
 	
-	public void setKeyListener(KeyListener keyListener) {
-		this.keyListener = keyListener;
+	public MenuPanel getMenuPanel() {
+		return menuPanel;
+	}
+	
+	public void setActionListener(ActionListener actionListener) {
+		this.actionListener = actionListener;
 	}
 }

@@ -19,6 +19,7 @@ public class MyButton extends JButton{
 		this.setBackground(colour1);
 		this.setForeground(colour2);
 		this.setFocusPainted(false);
+		this.setActionCommand(text);
 	}
 	
 }

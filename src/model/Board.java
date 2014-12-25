@@ -32,9 +32,9 @@ public class Board extends Observable {
 	final int xTrophy = (int) (WIDTH*0.75);
 	final int yTrophy = (int) (HEIGHT*0.75);
 	
-	private Player player = new Player(initialPosition, DIFFICULTY_LEVEL);
+	private Player player;
 	private Tile[][] grid = new Tile[WIDTH][HEIGHT];
-	private Trophy trophy = new Trophy();
+	private Trophy trophy;
 	private Position activePosition = initialPosition;
 	private boolean gameFinished = false;
 	
@@ -45,6 +45,11 @@ public class Board extends Observable {
 	// METHODS 
 	
 	public void initBoard() {
+		
+		player = new Player(initialPosition, DIFFICULTY_LEVEL);
+		trophy = new Trophy();
+		activePosition = initialPosition;
+		gameFinished = false;
 		
 		int numberOfHelpers = 0;
 		int numberOfEnemies = 0;
@@ -140,7 +145,7 @@ public class Board extends Observable {
 			if (this.isGameOver()) {
 				gameFinished = true;
 				this.setChanged();
-				this.notifyObservers();
+				this.notifyObservers(gameFinished);
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import model.Board;
 import model.Position;
+import view.EndOfGameDialogBox;
 import view.MainWindow;
 
 public class Controller implements KeyListener, ActionListener {
@@ -24,6 +25,9 @@ public class Controller implements KeyListener, ActionListener {
 		board.addObserver(gui.getInfoPanel());
 		board.initBoard();
 		gui.addKeyListener(this);
+		gui.getMenuPanel().setActionListener(this);
+		System.out.print(gui.getMenuPanel().getPause().getActionListeners());
+		System.out.print(gui.getMenuPanel().getActionListener());
 		gui.setFocusable(true);
 		gui.requestFocus();      // Give the panel focus.
 		
@@ -35,15 +39,19 @@ public class Controller implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
+		//System.out.println("Something happened!");
+
 		
 		switch(action) {
-		case "new game" :	board.initBoard();
-							break;
-		case "reset"	: 	;
-							break;
-		case "exit" 	: 	;
-							break;
+			case "new game" :	System.out.print(action);
+								board.initBoard();
+								break;
+			case "reset"	: 	System.out.print(action);
+								break;
+			case "exit" 	: 	System.out.print(action);
+								break;
 		}
+		gui.requestFocus();
 	}
 	
 	
@@ -70,6 +78,9 @@ public class Controller implements KeyListener, ActionListener {
 
         	board.makeMove(destination);
         	board.handleInteraction(board.getPlayer());
+        	if (board.isGameOver()) {
+        		new EndOfGameDialogBox(gui.getBoardRenderer());
+        	}
         }
 
     }
