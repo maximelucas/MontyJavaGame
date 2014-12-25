@@ -10,9 +10,9 @@ public class MenuPanel extends JPanel {
 	
 	// VARIABLES
 	
-	private final MyButton newGame = new MyButton("new game");
-	private final MyButton pause = new MyButton("pause");
-	private final MyButton reset = new MyButton("reset");
+	private final MyButton newGame = new MyButton("New Game");
+	private final MyButton highScores = new MyButton("High Scores");
+	private final MyButton exit = new MyButton("Exit");
 	
 	private ActionListener actionListener;
 	
@@ -21,15 +21,12 @@ public class MenuPanel extends JPanel {
 	public MenuPanel() {
 		setLayout(new FlowLayout());
 		add(newGame);
-		add(pause);
-		add(reset);
+		add(highScores);
+		add(exit);
 	}
 	
 	// GETTERS 
 	
-	public MyButton getPause() {
-		return pause;
-	}
 	
 	public ActionListener getActionListener() {
 		return actionListener;
@@ -40,8 +37,8 @@ public class MenuPanel extends JPanel {
 	public void setActionListener(ActionListener actionListener) {
 		this.actionListener = actionListener;
 		newGame.addActionListener(actionListener);
-		pause.addActionListener(actionListener);
-		reset.addActionListener(actionListener);
+		highScores.addActionListener(actionListener);
+		exit.addActionListener(actionListener);
 	}
 	
 }

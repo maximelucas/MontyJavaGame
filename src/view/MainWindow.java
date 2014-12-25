@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
@@ -49,6 +51,21 @@ public class MainWindow extends JFrame {
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.setVisible(true);
 		}
+	
+	// METHODS 
+	
+	public void askExitConfirmation() {
+		JOptionPane jop = new JOptionPane();    	
+		int choice = JOptionPane.showConfirmDialog(	this, 
+													"Do you really want to close ?",
+													"Confirm exit ? ", 
+													JOptionPane.YES_NO_CANCEL_OPTION, 
+													JOptionPane.QUESTION_MESSAGE);
+		if (choice==JOptionPane.YES_OPTION) {
+			// close and clean everything
+			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		}    
+	}
 	
 	// GETTERS 
 	

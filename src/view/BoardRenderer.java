@@ -69,7 +69,6 @@ public class BoardRenderer extends JPanel implements Observer {
 		} else if (object instanceof Player) {
 			;
 		} else if (object instanceof Boolean) {
-			new EndOfGameDialogBox(this);
 		}
 	}
 	

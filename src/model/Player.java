@@ -36,7 +36,7 @@ public class Player {
 				this.fightingSkill = 2; 
 				this.jokingSkill = 2;
 				
-		case 4: this.timeLeft = 75; 
+		case 4: this.timeLeft = 10; 
 				this.fightingSkill = 1; 
 				this.jokingSkill = 1;
 		}

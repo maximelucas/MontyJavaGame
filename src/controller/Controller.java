@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JOptionPane;
 
 import model.Board;
 import model.Position;
@@ -26,8 +29,6 @@ public class Controller implements KeyListener, ActionListener {
 		board.initBoard();
 		gui.addKeyListener(this);
 		gui.getMenuPanel().setActionListener(this);
-		System.out.print(gui.getMenuPanel().getPause().getActionListeners());
-		System.out.print(gui.getMenuPanel().getActionListener());
 		gui.setFocusable(true);
 		gui.requestFocus();      // Give the panel focus.
 		
@@ -43,13 +44,15 @@ public class Controller implements KeyListener, ActionListener {
 
 		
 		switch(action) {
-			case "new game" :	System.out.print(action);
-								board.initBoard();
-								break;
-			case "reset"	: 	System.out.print(action);
-								break;
-			case "exit" 	: 	System.out.print(action);
-								break;
+		case "New Game" :	System.out.print(action);
+							board.initBoard();
+							break;
+		case "High Scores"	: 	System.out.print(action);
+							break;
+		case "Exit" 	: 	System.out.print(action);
+							// ask for confirmation
+							gui.askExitConfirmation();
+							break;
 		}
 		gui.requestFocus();
 	}
@@ -79,7 +82,25 @@ public class Controller implements KeyListener, ActionListener {
         	board.makeMove(destination);
         	board.handleInteraction(board.getPlayer());
         	if (board.isGameOver()) {
-        		new EndOfGameDialogBox(gui.getBoardRenderer());
+        		EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
+        		System.out.print(box.getChoice());
+        		
+        		switch (box.getChoice()) {
+    			//close
+    			case -1 :	;
+    						break;
+    			//new game
+    			case 0 :	board.initBoard(); 
+    					 	break;
+    			//high scores
+    			case 1 :	;	
+    						break;
+    			//close
+    			case 2 : 	gui.askExitConfirmation();
+    						break;
+        			
+        			
+        		}
         	}
         }
 
