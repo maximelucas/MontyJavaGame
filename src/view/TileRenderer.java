@@ -31,7 +31,6 @@ public class TileRenderer extends JButton {
 	}
 	
 	public TileRenderer(String text) {
-		super(text);
 		this.setMargin(new Insets(0,0,0,0));
 		this.setBackground(grassGreen);
 	}

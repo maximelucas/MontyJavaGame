@@ -86,11 +86,11 @@ public class Player {
 	}
 	
 	public int getXPosition() {
-		return position.getY();
+		return position.getX();
 	}
 	
 	public int getYPosition() {
-		return position.getX();
+		return position.getY();
 	}
 	
 	public int getScore() {

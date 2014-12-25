@@ -31,7 +31,7 @@ public class Controller implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
     	
-    	System.out.print("\n key pressed !"+board.getPlayer().getPosition());
+    	System.out.print("\n ------- \n C : key pressed !"+board.getPlayer().getPosition());
     	String direction = "";
     	Position destination;
         int code = e.getKeyCode();

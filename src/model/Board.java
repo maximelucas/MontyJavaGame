@@ -33,20 +33,20 @@ public class Board extends Observable {
 
 //	}
 	
-//	public void printState() {
-//		System.out.print("test\n");
-//		for (int i=0; i<WIDTH; i++) {
-//			for (int j=0; j<HEIGHT; j++) {
-//				if (grid[i][j].getPlayer() != null) {
-//					System.out.print(getGrid()[i][j].getPlayer()+" ");
-//				} else {
-//				System.out.print(getGrid()[i][j].getOpponent()+" ");
-//				}
-//			}
-//			System.out.print("\n");
-//			
-//		}
-//	}
+	public void printState() {
+		System.out.print("test\n");
+		for (int i=0; i<WIDTH; i++) {
+			for (int j=0; j<HEIGHT; j++) {
+				if (grid[i][j].getPlayer() != null) {
+					System.out.print(getGrid()[i][j].getPlayer()+" ");
+				} else {
+				System.out.print(getGrid()[i][j].getOpponent()+" ");
+				}
+			}
+			System.out.print("\n");
+			
+		}
+	}
 	
 	// VARIABLES 
 	
@@ -94,9 +94,6 @@ public void initBoard() {
 			if (grid[x][y].getOpponent() == null) {
 				grid[x][y].setOpponent(new Enemy());
 				numberOfEnemies ++;
-			} else {
-				System.out.print("admn \n");
-
 			}
 		}
 		// randomly add helpers (only on even coordinates to spread them)
@@ -110,7 +107,6 @@ public void initBoard() {
 		}
 		this.setChanged();
 		this.notifyObservers();
-		System.out.print("notification sent");
 	}
 
 	
@@ -181,6 +177,7 @@ public void initBoard() {
 	
 	public void makeMove(Position destination) {
 		if (isValidDestination(destination)) {
+			System.out.print("\n M : making move");
 			int oldX = player.getXPosition();
 			int oldY = player.getYPosition();
 			int newX = destination.getX();
@@ -188,8 +185,10 @@ public void initBoard() {
 			grid[oldX][oldY].setPlayer(null);
 			player.move(destination);
 			grid[newX][newY].setPlayer(player);
-			System.out.print(grid[oldX][oldY]);
-			System.out.print(grid[newX][newY]);
+			System.out.print("\n old : "+oldX+ oldY+ grid[oldX][oldY]);
+			System.out.print("\n new : "+newX+newY+grid[newX][newY]+"\n ----- \n");
+			
+			printState();
 			this.setChanged();
 			this.notifyObservers();//player.getPosition()); // sends new position
 			activePosition = player.getPosition();
@@ -205,7 +204,7 @@ public void initBoard() {
 			grid[x][y].handleInteraction(player);
 		}
 		else {
-			System.out.print("no interaction possible \n");
+			System.out.print("\n M : no interaction possible \n");
 		}
 		this.setChanged();
 		this.notifyObservers(player);

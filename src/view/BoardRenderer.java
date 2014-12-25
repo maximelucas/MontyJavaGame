@@ -69,10 +69,13 @@ public class BoardRenderer extends JPanel implements Observer {
 			tileRenderers[newX][newY].update(newTile);
 			
 		} else if (object==null) {
-			System.out.print("draw all");
+			System.out.print("\n V : update, draw all \n");
+			board.printState();
 			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-		 	 		System.out.print(" "+i+j);
+		 	 		if (board.getTile(i,j).getPlayer()!=null) {
+		 	 			System.out.print("\n "+i+j);
+		 	 		}
 	 	 			tileRenderers[i][j].update(board.getTile(i, j));
 	 	 		}
 	 	 	}
