@@ -21,14 +21,17 @@ public class Controller implements KeyListener {
 		board.addObserver(gui.getBoardRenderer());
 		board.addObserver(gui.getInfoPanel());
 		board.initBoard();
-		gui.setKeyListener(this);
+		gui.addKeyListener(this);
+		gui.setFocusable(true);
+		gui.requestFocus();      // Give the panel focus.
+		
 	}
 	
 	
     @Override
     public void keyPressed(KeyEvent e) {
     	
-    	System.out.print("key pressed !");
+    	System.out.print("\n key pressed !"+board.getPlayer().getPosition());
     	String direction = "";
     	Position destination;
         int code = e.getKeyCode();
@@ -42,10 +45,13 @@ public class Controller implements KeyListener {
         } else if (code == KeyEvent.VK_RIGHT) {
         	direction = "right";
         }
-        
+        System.out.print(direction+"\t");
+
         if (direction!="") {
         	destination = board.computeDestination(direction);
+
         	board.makeMove(destination);
+        	board.handleInteraction(board.getPlayer());
         }
 
     }

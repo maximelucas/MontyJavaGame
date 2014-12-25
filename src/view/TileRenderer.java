@@ -21,7 +21,7 @@ public class TileRenderer extends JButton {
 	public final int TILE_SIZE = 40;
 	public final Color grassGreen = new Color(25, 143, 37);
 	public final Color raodGrey = new Color(119, 136, 153);
-	private ImageIcon icon;
+	private ImageIcon icon = new ImageIcon("");
 	//private static Icons icons = new Icons();
 	// CONSTRUCTOR
 	

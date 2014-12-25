@@ -121,34 +121,58 @@ public void initBoard() {
 	
 	public Position computeDestination(String direction) {
 		Position position = player.getPosition();
+		Position destination = new Position(-10,-10);
 		switch(direction) {
-		case "left" : 	position.add(-1,0);
+		case "left" : 	destination = position.plus(0,-1);
 						break;
-		case "right" : 	position.add(+1,0);
+		case "right" : 	destination = position.plus(0,+1);
 						break;
-		case "down" : position.add(0,-1);
+		case "down" : 	destination = position.plus(+1,0);
 						break;
-		case "up" : 	position.add(0,+1);
+		case "up" : 	destination = position.plus(-1,0);
 						break;
 		}
-		return position;
+		
+		return destination;
 	}
 	
 	public boolean isWithinBounds(Position destination) {
 		int x = destination.getX();
 		int y = destination.getY();
-		return (0 <= x 
+//		return (0 <= x 
+//				&& x < WIDTH 
+//				&& 0 <= y 
+//				&& y < HEIGHT);
+		if (0 <= x 
 				&& x < WIDTH 
 				&& 0 <= y 
-				&& y < HEIGHT);
+				&& y < HEIGHT) {
+			return true;
+		} else {
+			System.out.print("out of bounds");
+			return false;
+		}
 	}
 	
 	public boolean isAdjacent(Position destination) {
 		Position position = player.getPosition();
-		return (position.plus(0, +1).equals(destination)
+		System.out.print("pos"+position);
+		System.out.print("dest"+destination);
+		System.out.print(position.plus(0,1));
+		
+		if (position.plus(0, 1).equals(destination)
 				|| position.plus(0, -1).equals(destination)
-				|| position.plus(+1, 0).equals(destination)
-				|| position.plus(-1, 0).equals(destination));
+				|| position.plus(1, 0).equals(destination)
+				|| position.plus(-1, 0).equals(destination)) {
+			return true;
+		} else {
+			System.out.print("not adjacent !");
+			return false;
+		}
+//		return (position.plus(0, +1).equals(destination)
+//				|| position.plus(0, -1).equals(destination)
+//				|| position.plus(+1, 0).equals(destination)
+//				|| position.plus(-1, 0).equals(destination));
 	}
 	
 	public boolean isValidDestination(Position destination) {
@@ -164,8 +188,10 @@ public void initBoard() {
 			grid[oldX][oldY].setPlayer(null);
 			player.move(destination);
 			grid[newX][newY].setPlayer(player);
+			System.out.print(grid[oldX][oldY]);
+			System.out.print(grid[newX][newY]);
 			this.setChanged();
-			this.notifyObservers(player.getPosition()); // sends new position
+			this.notifyObservers();//player.getPosition()); // sends new position
 			activePosition = player.getPosition();
 		} else {
 			System.out.print("not a valid destination !");
@@ -178,8 +204,9 @@ public void initBoard() {
 		if (grid[x][y].isInteractionPossible()) {
 			grid[x][y].handleInteraction(player);
 		}
-		else 
+		else {
 			System.out.print("no interaction possible \n");
+		}
 		this.setChanged();
 		this.notifyObservers(player);
 		

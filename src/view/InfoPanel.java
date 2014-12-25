@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,6 +10,7 @@ import javax.swing.JPanel;
 
 import model.Board;
 import model.Player;
+import model.Position;
 
 @SuppressWarnings("serial")
 public class InfoPanel extends JPanel implements Observer {
@@ -77,7 +77,7 @@ public class InfoPanel extends JPanel implements Observer {
 			this.setVTimeLeft(board.getPlayer().getTimeLeft());
 			this.setVJokingSkill(board.getPlayer().getJokingSkill());
 			this.setVFightingSkill(board.getPlayer().getFightingSkill());
-			this.setVBag(board.getPlayer().getBag());
+			this.setVBag(board.getPlayer().getPosition());
 			this.setVScore(board.getPlayer().getScore());
 		}
 	}
@@ -98,12 +98,12 @@ public class InfoPanel extends JPanel implements Observer {
 		this.vFightingSkill.setText(Integer.toString(value));
 	}
 
-	public void setVBag(ArrayList<String> bag) {
-		String content = "";
-		for (String element : bag) {
-			content += element;
-		}
-		this.vBag.setText(content);
+	public void setVBag(Position position) {
+//		String content = "";
+//		for (String element : bag) {
+//			content += element;
+//		}
+		this.vBag.setText(position.toString());
 	}
 	
 	public void setVScore(int value) {

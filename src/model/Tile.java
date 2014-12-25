@@ -78,4 +78,9 @@ public class Tile {
 	public void setObject(String object) {
 		this.object = object;
 	}
+	
+	@Override 
+	public String toString() {
+		return "\n"+player+"\t"+opponent;
+	}
 }

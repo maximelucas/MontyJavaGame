@@ -8,6 +8,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import model.Board;
+import model.Player;
 import model.Position;
 import model.Tile;
 
@@ -38,49 +39,59 @@ public class BoardRenderer extends JPanel implements Observer {
 	 			this.add(tileRenderers[i][j]);
 			}
 		}
-	}	
+		
+}	
 	
 	// METHODS
 	
 	// implement Observer method update
 	public void update(Observable observable, Object object) {
-		System.out.print("board view notified of initialisation 1 \n");
 		Board board = (Board) observable;
 		
 		if (object instanceof Position) {
-			Position oldPos = (Position) object;
-			Position newPos = board.getActivePosition();
+			Position newPos = (Position) object;
+			Position oldPos = board.getActivePosition();
+			System.out.print("\n"+oldPos);
+			System.out.print("\n"+newPos);
 			int oldX = oldPos.getX();
 			int oldY = oldPos.getY();
 			int newX = newPos.getX();
 			int newY = newPos.getY();
+			System.out.print("n"+oldX+ oldY);
+			System.out.print("n"+newX+ newY);
+			
 			Tile oldTile = board.getTile(oldX, oldY);
-			Tile newTile = board.getTile(newX,  newY);
+			Tile newTile = board.getTile(newX, newY);
+			System.out.print(oldTile);
+			System.out.print(newTile);
+			
 			tileRenderers[oldX][oldY].update(oldTile);
 			tileRenderers[newX][newY].update(newTile);
 			
 		} else if (object==null) {
-			System.out.print("board view notified of initialisation 2\n");
+			System.out.print("draw all");
 			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-		 	 		System.out.print(""+i);
+		 	 		System.out.print(" "+i+j);
 	 	 			tileRenderers[i][j].update(board.getTile(i, j));
 	 	 		}
 	 	 	}
+		} else if (object instanceof Player) {
+			
 		} else {
-			System.out.print("\n what happens ?\n");
+			System.out.print("\n whaat"+object+"\n");
 		}
 	}
 	
-	public void update(Observable observable) {
-		System.out.print("board view notified of initialisation 2");
-		Board board = (Board) observable;
-		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
-	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
- 	 			tileRenderers[i][j].update(board.getTile(i, j));
- 	 		}
- 	 	}
-	}
+//	public void update(Observable observable) {
+//		System.out.print("board view notified of initialisation 2");
+//		Board board = (Board) observable;
+//		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
+//	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
+// 	 			tileRenderers[i][j].update(board.getTile(i, j));
+// 	 		}
+// 	 	}
+//	}
 	
 	// GETTERS
 	

@@ -12,7 +12,7 @@ public class Main {
 		Controller controller = new Controller(board, gui);
 		
 		System.out.print("\n"+board.countObservers());
-		System.out.print("\n"+board.countObservers());
+		System.out.print(board.getPlayer().getPosition());
 	}
 
 }
