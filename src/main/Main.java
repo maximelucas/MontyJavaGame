@@ -10,9 +10,6 @@ public class Main {
 		Board board = new Board();
 		MainWindow gui = new MainWindow();
 		Controller controller = new Controller(board, gui);
-		
-		System.out.print("\n"+board.countObservers());
-		System.out.print(board.getPlayer().getPosition());
 	}
 
 }

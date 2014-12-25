@@ -28,11 +28,13 @@ public class TileRenderer extends JButton {
 	public TileRenderer() {
 		this.setMargin(new Insets(0,0,0,0));
 		this.setBackground(grassGreen);
+		this.setFocusable(false);
 	}
 	
 	public TileRenderer(String text) {
 		this.setMargin(new Insets(0,0,0,0));
 		this.setBackground(grassGreen);
+		this.setFocusable(false);
 	}
 	
 	

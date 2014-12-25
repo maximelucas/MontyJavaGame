@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -7,7 +9,7 @@ import model.Board;
 import model.Position;
 import view.MainWindow;
 
-public class Controller implements KeyListener {
+public class Controller implements KeyListener, ActionListener {
 	
 
 	Board board;
@@ -27,11 +29,28 @@ public class Controller implements KeyListener {
 		
 	}
 	
+	// METHODS 
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String action = e.getActionCommand();
+		
+		switch(action) {
+		case "new game" :	board.initBoard();
+							break;
+		case "reset"	: 	;
+							break;
+		case "exit" 	: 	;
+							break;
+		}
+	}
+	
+	
 	
     @Override
     public void keyPressed(KeyEvent e) {
     	
-    	System.out.print("\n ------- \n C : key pressed !"+board.getPlayer().getPosition());
     	String direction = "";
     	Position destination;
         int code = e.getKeyCode();
@@ -45,7 +64,6 @@ public class Controller implements KeyListener {
         } else if (code == KeyEvent.VK_RIGHT) {
         	direction = "right";
         }
-        System.out.print(direction+"\t");
 
         if (direction!="") {
         	destination = board.computeDestination(direction);

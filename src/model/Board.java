@@ -4,35 +4,6 @@ import java.util.Observable;
 
 public class Board extends Observable {
 	
-	
-//	public static void main(String[] args) {
-
-    	
-    	// View theView = new View();
-        //Model theModel = new Model();
-        //Controller theController = new Controller(theView,theModel);
-        //theView.setVisible(true);
-                
-//		Board board = new Board();
-//		MainWindow gui = new MainWindow();
-//		board.grid[1][1].setOpponent(new Enemy());
-//		
-//		//MainWindow gui = new MainWindow();
-//		System.out.print(board.getPlayer());
-//
-//		board.makeMove(new Position(1,0));
-//		board.handleInteraction(board.getPlayer());
-//		System.out.print(board.getPlayer());
-//
-//		board.makeMove(new Position(1,1));
-//		board.handleInteraction(board.getPlayer());
-//		System.out.print(board.getPlayer());
-//		
-//		System.out.print(gui.getContentPane().getComponent(1));
-		
-
-//	}
-	
 	public void printState() {
 		System.out.print("test\n");
 		for (int i=0; i<WIDTH; i++) {
@@ -65,6 +36,7 @@ public class Board extends Observable {
 	private Tile[][] grid = new Tile[WIDTH][HEIGHT];
 	private Trophy trophy = new Trophy();
 	private Position activePosition = initialPosition;
+	private boolean gameFinished = false;
 	
 	
 	// CONSTRUCTOR
@@ -72,7 +44,7 @@ public class Board extends Observable {
 	
 	// METHODS 
 	
-public void initBoard() {
+	public void initBoard() {
 		
 		int numberOfHelpers = 0;
 		int numberOfEnemies = 0;
@@ -135,40 +107,18 @@ public void initBoard() {
 	public boolean isWithinBounds(Position destination) {
 		int x = destination.getX();
 		int y = destination.getY();
-//		return (0 <= x 
-//				&& x < WIDTH 
-//				&& 0 <= y 
-//				&& y < HEIGHT);
-		if (0 <= x 
+		return (0 <= x 
 				&& x < WIDTH 
 				&& 0 <= y 
-				&& y < HEIGHT) {
-			return true;
-		} else {
-			System.out.print("out of bounds");
-			return false;
-		}
+				&& y < HEIGHT);
 	}
 	
 	public boolean isAdjacent(Position destination) {
 		Position position = player.getPosition();
-		System.out.print("pos"+position);
-		System.out.print("dest"+destination);
-		System.out.print(position.plus(0,1));
-		
-		if (position.plus(0, 1).equals(destination)
+		return(position.plus(0, 1).equals(destination)
 				|| position.plus(0, -1).equals(destination)
 				|| position.plus(1, 0).equals(destination)
-				|| position.plus(-1, 0).equals(destination)) {
-			return true;
-		} else {
-			System.out.print("not adjacent !");
-			return false;
-		}
-//		return (position.plus(0, +1).equals(destination)
-//				|| position.plus(0, -1).equals(destination)
-//				|| position.plus(+1, 0).equals(destination)
-//				|| position.plus(-1, 0).equals(destination));
+				|| position.plus(-1, 0).equals(destination)); 
 	}
 	
 	public boolean isValidDestination(Position destination) {
@@ -177,7 +127,6 @@ public void initBoard() {
 	
 	public void makeMove(Position destination) {
 		if (isValidDestination(destination)) {
-			System.out.print("\n M : making move");
 			int oldX = player.getXPosition();
 			int oldY = player.getYPosition();
 			int newX = destination.getX();
@@ -185,15 +134,14 @@ public void initBoard() {
 			grid[oldX][oldY].setPlayer(null);
 			player.move(destination);
 			grid[newX][newY].setPlayer(player);
-			System.out.print("\n old : "+oldX+ oldY+ grid[oldX][oldY]);
-			System.out.print("\n new : "+newX+newY+grid[newX][newY]+"\n ----- \n");
-			
-			printState();
 			this.setChanged();
-			this.notifyObservers();//player.getPosition()); // sends new position
+			this.notifyObservers(player.getPosition()); // sends new position
 			activePosition = player.getPosition();
-		} else {
-			System.out.print("not a valid destination !");
+			if (this.isGameOver()) {
+				gameFinished = true;
+				this.setChanged();
+				this.notifyObservers();
+			}
 		}
 	}
 	
@@ -202,9 +150,6 @@ public void initBoard() {
 		int y = player.getYPosition();
 		if (grid[x][y].isInteractionPossible()) {
 			grid[x][y].handleInteraction(player);
-		}
-		else {
-			System.out.print("\n M : no interaction possible \n");
 		}
 		this.setChanged();
 		this.notifyObservers(player);

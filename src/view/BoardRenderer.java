@@ -51,50 +51,26 @@ public class BoardRenderer extends JPanel implements Observer {
 		if (object instanceof Position) {
 			Position newPos = (Position) object;
 			Position oldPos = board.getActivePosition();
-			System.out.print("\n"+oldPos);
-			System.out.print("\n"+newPos);
 			int oldX = oldPos.getX();
 			int oldY = oldPos.getY();
 			int newX = newPos.getX();
 			int newY = newPos.getY();
-			System.out.print("n"+oldX+ oldY);
-			System.out.print("n"+newX+ newY);
-			
 			Tile oldTile = board.getTile(oldX, oldY);
 			Tile newTile = board.getTile(newX, newY);
-			System.out.print(oldTile);
-			System.out.print(newTile);
-			
 			tileRenderers[oldX][oldY].update(oldTile);
 			tileRenderers[newX][newY].update(newTile);
 			
 		} else if (object==null) {
-			System.out.print("\n V : update, draw all \n");
-			board.printState();
 			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-		 	 		if (board.getTile(i,j).getPlayer()!=null) {
-		 	 			System.out.print("\n "+i+j);
-		 	 		}
 	 	 			tileRenderers[i][j].update(board.getTile(i, j));
 	 	 		}
 	 	 	}
 		} else if (object instanceof Player) {
-			
-		} else {
-			System.out.print("\n whaat"+object+"\n");
 		}
 	}
 	
-//	public void update(Observable observable) {
-//		System.out.print("board view notified of initialisation 2");
-//		Board board = (Board) observable;
-//		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
-//	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-// 	 			tileRenderers[i][j].update(board.getTile(i, j));
-// 	 		}
-// 	 	}
-//	}
+
 	
 	// GETTERS
 	
