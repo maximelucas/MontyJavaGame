@@ -4,21 +4,6 @@ import java.util.Observable;
 
 public class Board extends Observable {
 	
-	public void printState() {
-		System.out.print("test\n");
-		for (int i=0; i<WIDTH; i++) {
-			for (int j=0; j<HEIGHT; j++) {
-				if (grid[i][j].getPlayer() != null) {
-					System.out.print(getGrid()[i][j].getPlayer()+" ");
-				} else {
-				System.out.print(getGrid()[i][j].getOpponent()+" ");
-				}
-			}
-			System.out.print("\n");
-			
-		}
-	}
-	
 	// VARIABLES 
 	
 	private Player player;

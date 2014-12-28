@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.Board;
 import model.Position;
 import model.Opponent;
+import model.Trophy;
 import view.EndOfGameDialogBox;
 import view.MainWindow;
 
@@ -78,15 +79,17 @@ public class Controller implements KeyListener, ActionListener {
 	
 	        if (direction!="") {
 	        	destination = board.computeDestination(direction);
-	
 	        	board.makeMove(destination);
 	        	if (board.isInteractionPossible()) {
-	        		Opponent opponent = board.getActiveTile().getOpponent();
-	        		int choice = gui.askSkillChoice(opponent);
-	        		board.getPlayer().setSkillChoice(choice);
-	        		board.handleInteraction(board.getPlayer());
-	        		
+        			Opponent opponent = board.getActiveTile().getOpponent();
+        			if (!(opponent instanceof Trophy)) {
+        				int choice = gui.askSkillChoice(opponent);
+        				board.getPlayer().setSkillChoice(choice);
+        			}
 	        	}
+        		board.handleInteraction(board.getPlayer());
+        		System.out.print(board.getPlayer().getTimeLeft());	
+	        	
 	        	if (board.getGameFinished()) {
 	        		this.handleEndOfGame();
 	        	}
