@@ -5,6 +5,8 @@ public class Helper extends Opponent {
 	// VARIABLES
 	private final int MIN_MAGIC = 5;
 	private int magic;
+	private String[] options = {"joke", "fight", "magic"};
+
 	
 	// CONSTRUCTOR
 	
@@ -39,6 +41,10 @@ public class Helper extends Opponent {
 	
 	public int getMagic() {
 		return magic;
+	}
+	
+	public String[] getOptions() {
+		return options;
 	}
 	
 	// SETTERS

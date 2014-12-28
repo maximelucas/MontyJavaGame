@@ -21,23 +21,25 @@ public class Board extends Observable {
 	
 	// VARIABLES 
 	
-	final int WIDTH = 10;
-	final int HEIGHT = 10;
-	final int TOTAL_NUMBER_OF_ENEMIES = 4;
-	final int TOTAL_NUMBER_OF_HELPERS = 4;	
-	int DIFFICULTY_LEVEL = 1;
-	final int initialXPosition = 0;
-	final int initialYPosition = 0;
-	final Position initialPosition = new Position(initialXPosition, initialYPosition);
-	final int xTrophy = (int) (WIDTH*0.75);
-	final int yTrophy = (int) (HEIGHT*0.75);
-	
 	private Player player;
 	private Tile[][] grid = new Tile[WIDTH][HEIGHT];
 	private Trophy trophy;
 	private Position activePosition = initialPosition;
 	private boolean gameFinished = false;
-	
+	private HighScoreManager highScoreManager = new HighScoreManager();
+	// constants 
+	static final int WIDTH = 10; // in number of tiles
+	static final int HEIGHT = 10; // in number of tiles
+	static final int TOTAL_NUMBER_OF_ENEMIES = 4; 
+	static final int TOTAL_NUMBER_OF_HELPERS = 4;
+	// user input
+	int DIFFICULTY_LEVEL = 1;
+	// initial values
+	static final int initialXPosition = 0;
+	static final int initialYPosition = 0;
+	static final Position initialPosition = new Position(initialXPosition, initialYPosition);
+	static final int xTrophy = (int) (WIDTH*0.75);
+	static final int yTrophy = (int) (HEIGHT*0.75);
 	
 	// CONSTRUCTOR
 	
@@ -89,21 +91,27 @@ public class Board extends Observable {
 	
 	
 	public boolean isGameOver() {
-		return (player.getTimeLeft()==0);
+		return (player.getTimeLeft() == 0 && trophy.getWon());
 	}
 	
 	public Position computeDestination(String direction) {
 		Position position = player.getPosition();
-		Position destination = new Position(-10,-10);
+		Position destination = new Position(-10,-10); // TODO CHANGE THAT
 		switch(direction) {
-		case "left" : 	destination = position.plus(0,-1);
-						break;
-		case "right" : 	destination = position.plus(0,+1);
-						break;
-		case "down" : 	destination = position.plus(+1,0);
-						break;
-		case "up" : 	destination = position.plus(-1,0);
-						break;
+		case "left": 	
+			destination = position.plus(0,-1);
+			break;
+		case "right": 	
+			destination = position.plus(0,+1);
+			break;
+		case "down": 	
+			destination = position.plus(+1,0);
+			break;
+		case "up": 	
+			destination = position.plus(-1,0);
+			break;
+		default: 
+			break;
 		}
 		
 		return destination;
@@ -112,18 +120,18 @@ public class Board extends Observable {
 	public boolean isWithinBounds(Position destination) {
 		int x = destination.getX();
 		int y = destination.getY();
-		return (0 <= x 
-				&& x < WIDTH 
-				&& 0 <= y 
-				&& y < HEIGHT);
+		return (	0 <= x 
+				&& 	x < WIDTH 
+				&& 	0 <= y 
+				&& 	y < HEIGHT);
 	}
 	
 	public boolean isAdjacent(Position destination) {
 		Position position = player.getPosition();
-		return(position.plus(0, 1).equals(destination)
-				|| position.plus(0, -1).equals(destination)
-				|| position.plus(1, 0).equals(destination)
-				|| position.plus(-1, 0).equals(destination)); 
+		return(		position.plus(0, +1).equals(destination)
+				|| 	position.plus(0, -1).equals(destination)
+				|| 	position.plus(+1, 0).equals(destination)
+				|| 	position.plus(-1, 0).equals(destination)); 
 	}
 	
 	public boolean isValidDestination(Position destination) {
@@ -136,17 +144,12 @@ public class Board extends Observable {
 			int oldY = player.getYPosition();
 			int newX = destination.getX();
 			int newY = destination.getY();
-			grid[oldX][oldY].setPlayer(null);
-			player.move(destination);
-			grid[newX][newY].setPlayer(player);
-			this.setChanged();
-			this.notifyObservers(player.getPosition()); // sends new position
+			grid[oldX][oldY].setPlayer(null); // remove player from old tile
+			player.move(destination); // move player
+			grid[newX][newY].setPlayer(player); // set player on new tile
+			this.setChanged(); 
+			this.notifyObservers(player.getPosition()); // notify view of position change
 			activePosition = player.getPosition();
-			if (this.isGameOver()) {
-				gameFinished = true;
-				this.setChanged();
-				this.notifyObservers(gameFinished);
-			}
 		}
 	}
 	
@@ -158,8 +161,12 @@ public class Board extends Observable {
 		}
 		this.setChanged();
 		this.notifyObservers(player);
-		
+		if (this.getPlayer().getTimeLeft()==0 || trophy.getWon()) { // check if game is finished
+			gameFinished = true;
+		}
+
 	}
+	
 	// GETTERS
 	
 	public Player getPlayer() {
@@ -180,6 +187,14 @@ public class Board extends Observable {
 	
 	public Position getActivePosition() {
 		return activePosition;
+	}
+	
+	public boolean getGameFinished() {
+		return gameFinished;
+	}
+	
+	public HighScoreManager getHighScoreManager() {
+		return highScoreManager;
 	}
 	
 	// SETTERS 

@@ -7,6 +7,7 @@ public class Enemy extends Opponent{
 	public static int MAX_FIGHTING_THRESHOLD = 10;
 	private int jokeThreshold;
 	private int fightThreshold;
+	private String[] options = {"joke", "fight"};
 	
 	// CONSTRUCTOR
 	
@@ -36,6 +37,10 @@ public class Enemy extends Opponent{
 	}
 	
 	// GETTERS
+	
+	public String[] getOptions() {
+		return options;
+	}
 	
 	// SETTERS
 	
