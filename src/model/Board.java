@@ -74,7 +74,6 @@ public class Board extends Observable {
 	}
 
 	
-	
 	public boolean isGameOver() {
 		return (player.getTimeLeft() == 0 && trophy.getWon());
 	}

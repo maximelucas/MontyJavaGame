@@ -55,7 +55,7 @@ public class TileRenderer extends JButton {
 	public void update(Tile tile) {
 		if (tile.getPlayer()==null && tile.getOpponent()==null) {
 			this.setIcon(icon);
-		} else if (tile.getPlayer()!=null && tile.getOpponent()==null) {
+		} else if (tile.getPlayer()!=null) {
 			this.setIcon(Icons.player);
 		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Helper) {
 			this.setIcon(Icons.helper);
