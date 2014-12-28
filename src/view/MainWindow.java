@@ -71,7 +71,7 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
-    public void askSkillChoice(Opponent opponent) {
+    public int askSkillChoice(Opponent opponent) {
     	int choice; // 0 joke, 1 fight, 2 magic
     	String message = "";
     	String title = "";
@@ -99,7 +99,7 @@ public class MainWindow extends JFrame {
     											null, //icon
     											options, //list of buttons
     											options[0]); //default focus on first button
-    
+    	return choice;
     }
 	
 	// GETTERS 

@@ -153,6 +153,12 @@ public class Board extends Observable {
 		}
 	}
 	
+	public boolean isInteractionPossible() {
+		int x = player.getXPosition();
+		int y = player.getYPosition();
+		return (grid[x][y].isInteractionPossible());
+	}
+	
 	public void handleInteraction(Player player) {
 		int x = player.getXPosition();
 		int y = player.getYPosition();
@@ -163,6 +169,7 @@ public class Board extends Observable {
 		this.notifyObservers(player);
 		if (this.getPlayer().getTimeLeft()==0 || trophy.getWon()) { // check if game is finished
 			gameFinished = true;
+			highScoreManager.setScore(this.getPlayer().getScore());
 		}
 
 	}
@@ -197,6 +204,11 @@ public class Board extends Observable {
 		return highScoreManager;
 	}
 	
+	public Tile getActiveTile() {
+		int x = activePosition.getX();
+		int y = activePosition.getY();
+		return grid[x][y];
+	}
 	// SETTERS 
 	
 	

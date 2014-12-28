@@ -126,8 +126,20 @@ public class Player {
 		this.position = position;
 	}
 	
-	public void setSkillChoice(String choice) {
-		this.skillChoice = choice;
+	public void setSkillChoice(int choice) {
+		switch(choice) {
+		case 0:
+			this.skillChoice = "joke";
+			break;
+		case 1:
+			this.skillChoice = "fight";
+			break;
+		case 2:
+			this.skillChoice = "magic";
+			break;
+		default:
+			;
+		}
 	}
 	
 	public String toString() {

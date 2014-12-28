@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import model.Board;
 import model.Position;
+import model.Opponent;
 import view.EndOfGameDialogBox;
 import view.MainWindow;
 
@@ -79,8 +80,13 @@ public class Controller implements KeyListener, ActionListener {
 	        	destination = board.computeDestination(direction);
 	
 	        	board.makeMove(destination);
-	        	
-	        	board.handleInteraction(board.getPlayer());
+	        	if (board.isInteractionPossible()) {
+	        		Opponent opponent = board.getActiveTile().getOpponent();
+	        		int choice = gui.askSkillChoice(opponent);
+	        		board.getPlayer().setSkillChoice(choice);
+	        		board.handleInteraction(board.getPlayer());
+	        		
+	        	}
 	        	if (board.getGameFinished()) {
 	        		this.handleEndOfGame();
 	        	}

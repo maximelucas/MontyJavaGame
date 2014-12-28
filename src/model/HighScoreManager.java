@@ -24,7 +24,7 @@ public class HighScoreManager {
 	//  METHODS 
 	
 	public boolean isHighScore() {
-		return (score >= highScore);
+		return (score >= highScore && score>0);
 	}
 	
 	public void storeScore(String name) {
