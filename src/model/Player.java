@@ -15,7 +15,6 @@ public class Player {
 	private ArrayList<String> bag;
 	
 	
-	
 	// CONSTRUCTOR --------------------------
 	
 	public Player(Position position, int difficultyLevel) {
@@ -24,21 +23,25 @@ public class Player {
 		this.bag = new ArrayList<String>();
 		
 		switch(difficultyLevel) {
-		case 1:	this.timeLeft = 150; 
-				this.fightingSkill = 5; 
-				this.jokingSkill = 5;
+		case 1:	
+			this.timeLeft = 150; 
+			this.fightingSkill = 5; 
+			this.jokingSkill = 5;
 
-		case 2: this.timeLeft = 150; 
-				this.fightingSkill = 2; 
-				this.jokingSkill = 2;
+		case 2: 
+			this.timeLeft = 150; 
+			this.fightingSkill = 2; 
+			this.jokingSkill = 2;
 				
-		case 3: this.timeLeft = 100; 
-				this.fightingSkill = 2; 
-				this.jokingSkill = 2;
+		case 3: 
+			this.timeLeft = 100; 
+			this.fightingSkill = 2; 
+			this.jokingSkill = 2;
 				
-		case 4: this.timeLeft = 10; 
-				this.fightingSkill = 1; 
-				this.jokingSkill = 1;
+		case 4: 
+			this.timeLeft = 10; 
+			this.fightingSkill = 1; 
+			this.jokingSkill = 1;
 		}
 	}
 

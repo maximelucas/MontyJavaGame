@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 public class EndOfGameDialogBox extends JOptionPane {
 	
 	    private final String[] options = {"New Game", "High Scores", "Exit"};
-	    private final String title = "Game Over";
-	    private final String message = "You lost ! \n What is next ?";
+	    private final String title = "End of Game";
+	    private final String message = "What is next ?";
 	    private int choice;
 	    
 	    
@@ -22,9 +22,6 @@ public class EndOfGameDialogBox extends JOptionPane {
 					    							options, //list of buttons
 					    							options[0]); //default focus on first button
 	    }
-	    
-	    //jop2.showMessageDialog(null, "Votre sexe est " + sexe[rang], "Etat civil", JOptionPane.INFORMATION_MESSAGE);
-
 	    
 	    public int getChoice() {
 	    	return choice;

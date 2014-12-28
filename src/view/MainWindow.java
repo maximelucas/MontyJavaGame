@@ -9,6 +9,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import model.Enemy;
+import model.Helper;
+import model.Opponent;
+
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	
@@ -64,8 +68,39 @@ public class MainWindow extends JFrame {
 		if (choice==JOptionPane.YES_OPTION) {
 			// close and clean everything
 			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-		}    
+		}
 	}
+	
+    public void askSkillChoice(Opponent opponent) {
+    	int choice; // 0 joke, 1 fight, 2 magic
+    	String message = "";
+    	String title = "";
+    	String[] options = {""};
+    	
+    	if (opponent instanceof Helper) {
+    		Helper helper = (Helper) opponent;
+    		options = helper.getOptions(); 
+    		title = "Helper encountered";
+    		message = "Someone wants to help you ! \n"+
+    				  "Choose an option :";
+    	} else if (opponent instanceof Enemy) {
+    		Enemy enemy = (Enemy) opponent;
+    		options = enemy.getOptions(); 
+    		title = "Enemy encountered";
+    		message = "This person will not let you pass !\n"+
+    				  "Try to beat him with :";
+    	}
+    	
+    	choice = JOptionPane.showOptionDialog(	this, //parent pane
+    											message,
+    											title,
+    											JOptionPane.YES_NO_CANCEL_OPTION, //type of options
+    											JOptionPane.QUESTION_MESSAGE, //type of message
+    											null, //icon
+    											options, //list of buttons
+    											options[0]); //default focus on first button
+    
+    }
 	
 	// GETTERS 
 	

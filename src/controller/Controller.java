@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JOptionPane;
 
@@ -14,7 +13,6 @@ import view.EndOfGameDialogBox;
 import view.MainWindow;
 
 public class Controller implements KeyListener, ActionListener {
-	
 
 	Board board;
 	MainWindow gui;
@@ -40,21 +38,20 @@ public class Controller implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
-		//System.out.println("Something happened!");
-
 		
 		switch(action) {
-		case "New Game" :	System.out.print(action);
-							board.initBoard();
-							break;
-		case "High Scores"	: 	System.out.print(action);
-							break;
-		case "Exit" 	: 	System.out.print(action);
-							// ask for confirmation
-							gui.askExitConfirmation();
-							break;
+		case "New Game":	
+			board.initBoard();
+			break;
+		case "High Scores": 	
+			break;
+		case "Exit": 	
+			gui.askExitConfirmation(); // ask for confirmation
+			break;
+		default:
+			;
 		}
-		gui.requestFocus();
+		gui.requestFocus(); //ensure reaction to arrow keys pressed again
 	}
 	
 	
@@ -66,53 +63,89 @@ public class Controller implements KeyListener, ActionListener {
     	Position destination;
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_DOWN) {
-        	direction = "down";
-        } else if (code == KeyEvent.VK_UP) {
-        	direction = "up";
-        } else if (code == KeyEvent.VK_LEFT) {
-        	direction = "left";
-        } else if (code == KeyEvent.VK_RIGHT) {
-        	direction = "right";
+        if (!board.getGameFinished()) { // keep moving only is game not finished
+        	
+	        if (code == KeyEvent.VK_DOWN) {
+	        	direction = "down";
+	        } else if (code == KeyEvent.VK_UP) {
+	        	direction = "up";
+	        } else if (code == KeyEvent.VK_LEFT) {
+	        	direction = "left";
+	        } else if (code == KeyEvent.VK_RIGHT) {
+	        	direction = "right";
+	        }
+	
+	        if (direction!="") {
+	        	destination = board.computeDestination(direction);
+	
+	        	board.makeMove(destination);
+	        	
+	        	board.handleInteraction(board.getPlayer());
+	        	if (board.getGameFinished()) {
+	        		this.handleEndOfGame();
+	        	}
+	        }
         }
-
-        if (direction!="") {
-        	destination = board.computeDestination(direction);
-
-        	board.makeMove(destination);
-        	board.handleInteraction(board.getPlayer());
-        	if (board.isGameOver()) {
-        		EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
-        		System.out.print(box.getChoice());
-        		
-        		switch (box.getChoice()) {
-    			//close
-    			case -1 :	;
-    						break;
-    			//new game
-    			case 0 :	board.initBoard(); 
-    					 	break;
-    			//high scores
-    			case 1 :	;	
-    						break;
-    			//close
-    			case 2 : 	gui.askExitConfirmation();
-    						break;
-        			
-        			
-        		}
-        	}
-        }
-
     }
 	
     @Override
     public void keyTyped(KeyEvent e) {
+    	;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+    	;
 	}
     
+    public void handleEndOfGame() {
+    	String title;
+    	String message;
+    	if (board.getTrophy().getWon()) {
+    		title = "Victory !";
+    		message = "You won !\n"+
+    				  "Your score is " + board.getPlayer().getScore();
+    	} else {
+    		title = "Defeat !";
+    		message = "You lost !\n"+
+    				  "Your score is " + board.getPlayer().getScore()+".";
+    	}
+    	
+    	JOptionPane.showMessageDialog(	gui.getBoardRenderer(), 
+    									message, 
+										title,
+										JOptionPane.INFORMATION_MESSAGE);
+    			
+    	if (board.getHighScoreManager().isHighScore()) {
+    	    String name =JOptionPane.showInputDialog(	gui.getBoardRenderer(), 
+    	    											"You beat the high score !\n"+
+    	    											"Please, enter your name.",
+    	    											"Save High Score",
+    	    											JOptionPane.QUESTION_MESSAGE);
+    	    board.getHighScoreManager().storeScore(name);
+    	}
+    	
+    	EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
+		
+		switch (box.getChoice()) { // take action depending on user's answer to dialog
+		case -1: //close
+			;
+			break;
+		case 0: //new game
+			board.initBoard(); 
+		 	break;
+		case 1:	//high scores
+			;	
+			break;
+		case 2: //close	
+			gui.askExitConfirmation();
+			break;
+		default:
+			;
+		}
+    	
+    }
+    
+
 }
 	
