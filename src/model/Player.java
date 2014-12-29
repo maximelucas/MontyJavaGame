@@ -7,11 +7,12 @@ public class Player {
 	// VARIABLES ---------------------------
 	
 	private Position position;
-	private int score;
+	private int score = 0;
 	private int timeLeft;
 	private int fightingSkill;
 	private int jokingSkill;
-	private String skillChoice = "joke";
+	private int visionScope = 2;
+	private String skillChoice;
 	private ArrayList<String> bag;
 	
 	
@@ -19,7 +20,6 @@ public class Player {
 	
 	public Player(Position position, int difficultyLevel) {
 		this.position = position;
-		this.score = 0;
 		this.bag = new ArrayList<String>();
 		
 		switch(difficultyLevel) {
@@ -118,6 +118,10 @@ public class Player {
 	
 	public ArrayList<String> getBag() {
 		return bag;
+	}
+	
+	public int getVisionScope() {
+		return visionScope;
 	}
 	
 	// SETTERS

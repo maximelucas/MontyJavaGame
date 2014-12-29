@@ -52,6 +52,12 @@ public class Position {
 		return result;
 	}
 	
+	public static int manhattanDistance(Position pos1, Position pos2) {
+		Position deltaPos = pos1.minus(pos2);
+		int deltaX = deltaPos.getX();
+		int deltaY = deltaPos.getY();
+		return Math.abs(deltaX) + Math.abs(deltaY);
+	}
 	
 	
 	public boolean equals(Position position2) {

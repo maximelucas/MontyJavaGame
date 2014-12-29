@@ -3,8 +3,8 @@ package model;
 public class Enemy extends Opponent{
 	
 	//  VARIABLES 
-	public static int MAX_JOKING_THRESHOLD = 10;
-	public static int MAX_FIGHTING_THRESHOLD = 10;
+	private static int MAX_JOKING_THRESHOLD = 10;
+	private static int MAX_FIGHTING_THRESHOLD = 10;
 	private int jokeThreshold;
 	private int fightThreshold;
 	private String[] options = {"joke", "fight"};

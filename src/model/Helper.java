@@ -12,7 +12,7 @@ public class Helper extends Opponent {
 	
 	public Helper() {
 		super();
-		this.magic = 3*( 1 + (int)(Math.random()*(MIN_MAGIC -1)));
+		this.magic = 3*( 1 + (int)(Math.random()*(MIN_MAGIC -1))); // generate magic between 5 and 15
 	}
 	
 	public Helper(int bonus, int magic) {

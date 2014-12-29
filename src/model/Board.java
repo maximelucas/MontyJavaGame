@@ -132,7 +132,7 @@ public class Board extends Observable {
 			player.move(destination); // move player
 			grid[newX][newY].setPlayer(player); // set player on new tile
 			this.setChanged(); 
-			this.notifyObservers(player.getPosition()); // notify view of position change
+			this.notifyObservers(); // notify view of position change
 			activePosition = player.getPosition();
 		}
 	}

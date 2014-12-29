@@ -26,12 +26,9 @@ public class Controller implements KeyListener, ActionListener {
 		this.gui = gui;
 		board.addObserver(gui.getBoardRenderer());
 		board.addObserver(gui.getInfoPanel());
-		board.initBoard();
 		gui.addKeyListener(this);
 		gui.getMenuPanel().setActionListener(this);
-		gui.setFocusable(true);
-		gui.requestFocus();      // Give the panel focus.
-		
+		board.initBoard();
 	}
 	
 	// METHODS 
@@ -45,7 +42,9 @@ public class Controller implements KeyListener, ActionListener {
 		case "New Game":	
 			board.initBoard();
 			break;
-		case "High Scores": 	
+		case "High Scores": 
+			String highScore = board.getHighScoreManager().getHighScoreText();
+			gui.showHighScore(highScore);	
 			break;
 		case "Exit": 	
 			gui.askExitConfirmation(); // ask for confirmation
@@ -83,12 +82,11 @@ public class Controller implements KeyListener, ActionListener {
 	        	if (board.isInteractionPossible()) {
         			Opponent opponent = board.getActiveTile().getOpponent();
         			if (!(opponent instanceof Trophy)) {
-        				int choice = gui.askSkillChoice(opponent);
+        				int choice = gui.getBoardRenderer().askSkillChoice(opponent);
         				board.getPlayer().setSkillChoice(choice);
         			}
 	        	}
         		board.handleInteraction(board.getPlayer());
-        		System.out.print(board.getPlayer().getTimeLeft());	
 	        	
 	        	if (board.getGameFinished()) {
 	        		this.handleEndOfGame();
@@ -144,7 +142,8 @@ public class Controller implements KeyListener, ActionListener {
 			board.initBoard(); 
 		 	break;
 		case 1:	//high scores
-			;	
+			String highScore = board.getHighScoreManager().getHighScoreText();
+			gui.showHighScore(highScore);	
 			break;
 		case 2: //close	
 			gui.askExitConfirmation();

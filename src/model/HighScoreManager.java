@@ -55,7 +55,7 @@ public class HighScoreManager {
 	}
 	
 	public int getHighScore() {
-		// format name,score
+		// format name:score
 		BufferedReader reader = null;
 		try {
 			FileReader readFile = new FileReader("highscore.dat");
@@ -65,6 +65,28 @@ public class HighScoreManager {
 			
 		} catch (Exception e) {
 			return Integer.parseInt("-1");
+		} finally {
+			if (reader!=null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public String getHighScoreText() {
+		// format name:score
+		BufferedReader reader = null;
+		try {
+			FileReader readFile = new FileReader("highscore.dat");
+			reader = new BufferedReader(readFile);
+			String line = reader.readLine();
+			return line;
+			
+		} catch (Exception e) {
+			return "-1";
 		} finally {
 			if (reader!=null) {
 				try {

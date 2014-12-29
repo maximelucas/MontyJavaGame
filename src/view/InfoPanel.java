@@ -18,7 +18,7 @@ public class InfoPanel extends JPanel implements Observer {
 	// VARIABLES 
 	
 	// player state info
-	private JPanel playerInfoPanel = new JPanel();
+	private final JPanel playerInfoPanel = new JPanel();
 	private final JLabel tTimeLeft = new JLabel("Steps left");
 	private final JLabel tJokingSkill = new JLabel("Joking skill");
 	private final JLabel tFightingSkill = new JLabel("Fighting skill");
