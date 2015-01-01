@@ -143,7 +143,7 @@ public class Controller implements KeyListener, ActionListener {
 		 	break;
 		case 1:	//high scores
 			String highScore = board.getHighScoreManager().getHighScoreText();
-			gui.showHighScore(highScore);	
+			gui.showHighScore(highScore);		
 			break;
 		case 2: //close	
 			gui.askExitConfirmation();

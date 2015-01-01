@@ -75,7 +75,7 @@ public class Board extends Observable {
 
 	
 	public boolean isGameOver() {
-		return (player.getTimeLeft() == 0 && trophy.getWon());
+		return (player.getStepsLeft() == 0 && trophy.getWon());
 	}
 	
 	public Position computeDestination(String direction) {
@@ -151,7 +151,7 @@ public class Board extends Observable {
 		}
 		this.setChanged();
 		this.notifyObservers(player);
-		if (this.getPlayer().getTimeLeft()==0 || trophy.getWon()) { // check if game is finished
+		if (this.getPlayer().getStepsLeft()==0 || trophy.getWon()) { // check if game is finished
 			gameFinished = true;
 			highScoreManager.setScore(this.getPlayer().getScore());
 		}

@@ -29,12 +29,12 @@ public class Helper extends Opponent {
 		} else if (choice=="joke") {
 			this.increaseJokingSkill(player);
 		} else if (choice=="magic") {
-			this.increaseTimeLeft(player);
+			this.increaseStepsLeft(player);
 		}
 	}
 	
-	public void increaseTimeLeft(Player player) {
-		player.increaseTimeLeft(magic);
+	public void increaseStepsLeft(Player player) {
+		player.increaseStepsLeft(magic);
 	}
 		
 	// GETTERS

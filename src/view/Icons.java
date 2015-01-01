@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Icons {
 		
-	public final static String imagesSrc = "src/view/images/";
+	public final static String imagesSrc = "src/resources/";
 	
 	public final static ImageIcon player = new ImageIcon(imagesSrc + "player.png");
 	public final static ImageIcon helper = new ImageIcon(imagesSrc + "helper.png");

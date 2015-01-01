@@ -47,6 +47,7 @@ public class MainWindow extends JFrame {
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.setFocusable(true);
 		this.requestFocus();      // Give the panel focus.
+		this.setLocationRelativeTo(null); //appear at the center of the screen
 		this.setVisible(true);
 		}
 	

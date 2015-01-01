@@ -74,7 +74,7 @@ public class InfoPanel extends JPanel implements Observer {
 	public void update(Observable observable, Object object) {
 		Board board = (Board) observable;
 		if (object instanceof Player || object==null) {
-			this.setVTimeLeft(board.getPlayer().getTimeLeft());
+			this.setVTimeLeft(board.getPlayer().getStepsLeft());
 			this.setVJokingSkill(board.getPlayer().getJokingSkill());
 			this.setVFightingSkill(board.getPlayer().getFightingSkill());
 			this.setVBag(board.getPlayer().getPosition());

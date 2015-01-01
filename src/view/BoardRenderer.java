@@ -102,11 +102,8 @@ public class BoardRenderer extends JPanel implements Observer {
 			}
 			
 		} else if (object==null) {
-			System.out.print("ouiii\n");
 			Position activePosition = board.getPlayer().getPosition();
 			int scope = board.getPlayer().getVisionScope();	
-			System.out.print(activePosition);
-			System.out.print(scope);
 			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
 		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
 		 	 		

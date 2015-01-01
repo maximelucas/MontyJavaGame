@@ -1,73 +1,68 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Player {
 	
 	// VARIABLES ---------------------------
 	
 	private Position position;
 	private int score = 0;
-	private int timeLeft;
+	private int stepsLeft;
 	private int fightingSkill;
 	private int jokingSkill;
 	private int visionScope = 2;
 	private String skillChoice;
-	private ArrayList<String> bag;
 	
 	
 	// CONSTRUCTOR --------------------------
 	
 	public Player(Position position, int difficultyLevel) {
 		this.position = position;
-		this.bag = new ArrayList<String>();
 		
 		switch(difficultyLevel) {
 		case 1:	
-			this.timeLeft = 150; 
+			this.stepsLeft = 150; 
 			this.fightingSkill = 5; 
 			this.jokingSkill = 5;
 
 		case 2: 
-			this.timeLeft = 150; 
+			this.stepsLeft = 150; 
 			this.fightingSkill = 2; 
 			this.jokingSkill = 2;
 				
 		case 3: 
-			this.timeLeft = 100; 
+			this.stepsLeft = 100; 
 			this.fightingSkill = 2; 
 			this.jokingSkill = 2;
 				
 		case 4: 
-			this.timeLeft = 10; 
+			this.stepsLeft = 10; 
 			this.fightingSkill = 1; 
 			this.jokingSkill = 1;
 		}
 	}
 
 	
-	public Player(int timeLeft, int fightingSkill, int jokingSkill) {
-		this.timeLeft = timeLeft; 
+	public Player(int stepsLeft, int fightingSkill, int jokingSkill) {
+		this.stepsLeft = stepsLeft; 
 		this.fightingSkill = fightingSkill; 
 		this.jokingSkill = jokingSkill;
 		this.position = new Position(1,1);
 		this.score = 0;
-		this.bag = new ArrayList<String>();
 	}
 	
 	// METHODS ------------------------------
 	
 	public void move(Position destination) {
 		setPosition(destination);
-		timeLeft -= 1;
+		stepsLeft -= 1;
 	}
 	
 	public void increaseScore(int bonus) {
 		score += bonus;
 	}
 	
-	public void increaseTimeLeft(int bonus) {
-		timeLeft+= bonus;
+	public void increaseStepsLeft(int bonus) {
+		stepsLeft+= bonus;
 	}
 	
 	public void increaseFightingSkill(int bonus) {
@@ -76,10 +71,6 @@ public class Player {
 	
 	public void increaseJokingSkill(int bonus) {
 		jokingSkill += bonus;
-	}
-	
-	public void addToBag(String item) {
-		bag.add(item);
 	}
 	
 	// GETTERS 
@@ -100,8 +91,8 @@ public class Player {
 		return score;
 	}
 	
-	public int getTimeLeft() {
-		return timeLeft;
+	public int getStepsLeft() {
+		return stepsLeft;
 	}
 	
 	public int getFightingSkill() {
@@ -114,10 +105,6 @@ public class Player {
 	
 	public String getSkillChoice() {
 		return skillChoice;
-	}
-	
-	public ArrayList<String> getBag() {
-		return bag;
 	}
 	
 	public int getVisionScope() {
@@ -147,6 +134,6 @@ public class Player {
 	}
 	
 	public String toString() {
-		return "play \t"+position+"\t"+timeLeft+"\t"+jokingSkill+"\t"+score+"\n";
+		return "play \t"+position+"\t"+stepsLeft+"\t"+jokingSkill+"\t"+score+"\n";
 	}
 }

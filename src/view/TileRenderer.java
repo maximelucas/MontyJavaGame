@@ -70,7 +70,6 @@ public class TileRenderer extends JButton {
 	public void update(Tile tile, Position position, Position activePosition, int scope) {
 		
 		if (Position.manhattanDistance(position, activePosition) <= scope ) {
-			//System.out.print(position);
 			if (tile.getPlayer()==null && tile.getOpponent()==null) {
 				this.setIcon(icon);
 			} else if (tile.getPlayer()!=null) {
@@ -93,9 +92,6 @@ public class TileRenderer extends JButton {
 				;			
 			}
 		} else {
-			//System.out.print("-");
-			//System.out.print(position);
-
 			this.setBackground(Color.black);
 		}
 	}
