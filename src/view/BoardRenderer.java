@@ -48,7 +48,7 @@ public class BoardRenderer extends JPanel implements Observer {
 	// METHODS
 	
 	public int askSkillChoice(Opponent opponent) {
-    	int choice; // 0 joke, 1 fight, 2 magic
+    	int choice; // 0 joke, 1 fight, 2 steps
     	String message = "";
     	String title = "";
     	String[] options = {""};

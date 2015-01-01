@@ -7,30 +7,11 @@ public class Tile {
 	private String terrain;
 	private Opponent opponent;
 	private Player player;
-	private String object;
 	
 	// CONSTRUCTORS
 	
 	public Tile(String terrain) {
 		this.terrain = terrain;
-	}
-	
-	public Tile(String terrain, Opponent opponent) {
-		this.terrain = terrain;
-		this.opponent = opponent;
-	}
-	
-	public Tile(String terrain, Opponent opponent, Player player) {
-		this.terrain = terrain;
-		this.opponent = opponent;
-		this.player = player;
-	}
-	
-	public Tile(String terrain, Opponent opponent, Player player, String object) {
-		this.terrain = terrain;
-		this.opponent = opponent;
-		this.player = player;
-		this.object = object;
 	}
 	
 	// METHODS 
@@ -56,10 +37,6 @@ public class Tile {
 	public Player getPlayer() {	
 		return player;
 	}
-	
-	public String getObject() {
-		return object;
-	}
 
 	// SETTERS 
 	
@@ -75,12 +52,8 @@ public class Tile {
 		this.player = player;
 	}
 	
-	public void setObject(String object) {
-		this.object = object;
-	}
-	
 	@Override 
 	public String toString() {
-		return "\n"+player+"\t"+opponent;
+		return "\n"+player + "\t"+opponent;
 	}
 }

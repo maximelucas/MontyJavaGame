@@ -11,20 +11,21 @@ public class HighScoreManager {
 	
 	// VARIABLE 
 
-	private int highScore;
+	private String highScore; // format name:highscore
+	private int highScoreValue;
 	private int score;
-	private String name;
 	
 	// CONSTRUCTOR 
 	
 	public HighScoreManager() {
 		this.highScore = this.getHighScore();
+		this.highScoreValue = Integer.parseInt(highScore.split(":")[1]);
 	}
 	
 	//  METHODS 
 	
 	public boolean isHighScore() {
-		return (score >= highScore && score>0);
+		return (score >= highScoreValue && score > 0);
 	}
 	
 	public void storeScore(String name) {
@@ -54,29 +55,7 @@ public class HighScoreManager {
 		}
 	}
 	
-	public int getHighScore() {
-		// format name:score
-		BufferedReader reader = null;
-		try {
-			FileReader readFile = new FileReader("highscore.dat");
-			reader = new BufferedReader(readFile);
-			String line = reader.readLine();
-			return Integer.parseInt(line.split(":")[1]);
-			
-		} catch (Exception e) {
-			return Integer.parseInt("-1");
-		} finally {
-			if (reader!=null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	
-	public String getHighScoreText() {
+	public String getHighScore() {
 		// format name:score
 		BufferedReader reader = null;
 		try {
@@ -86,7 +65,7 @@ public class HighScoreManager {
 			return line;
 			
 		} catch (Exception e) {
-			return "-1";
+			return "name:-1";
 		} finally {
 			if (reader!=null) {
 				try {
@@ -100,6 +79,10 @@ public class HighScoreManager {
 	
 	public void setHighScore() {
 		this.highScore = this.getHighScore();
+	}
+	
+	public void setHighScoreValue() {
+		this.highScoreValue = Integer.parseInt(this.getHighScore().split(":")[1]);
 	}
 	
 	public void setScore(int score) {

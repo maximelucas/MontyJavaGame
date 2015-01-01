@@ -4,13 +4,13 @@ public abstract class Opponent {
 	
 	// VARIBABLES
 	
+	private int bonus; // amount of skill points the player earns from that opponent
 	private static final int MAX_BONUS = 5;
-	private int bonus;
 	
 	// CONSTRUCTOR
 	
 	public Opponent() {
-		this.bonus = 1 + (int)(Math.random()*(MAX_BONUS-1));
+		this.bonus = 1 + (int)(Math.random()*(MAX_BONUS-1)); // generate bonus between 1 and 5
 	}
 	
 	// METHODS

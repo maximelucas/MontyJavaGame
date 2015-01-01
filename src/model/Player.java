@@ -108,7 +108,7 @@ public class Player {
 			this.skillChoice = "fight";
 			break;
 		case 2:
-			this.skillChoice = "magic";
+			this.skillChoice = "steps";
 			break;
 		default:
 			;

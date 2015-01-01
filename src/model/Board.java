@@ -37,6 +37,7 @@ public class Board extends Observable {
 		trophy = new Trophy();
 		activePosition = initialPosition;
 		gameFinished = false;
+		highScoreManager.setHighScoreValue();
 		
 		int numberOfHelpers = 0;
 		int numberOfEnemies = 0;
@@ -155,7 +156,6 @@ public class Board extends Observable {
 			gameFinished = true;
 			highScoreManager.setScore(this.getPlayer().getScore());
 		}
-
 	}
 	
 	// GETTERS

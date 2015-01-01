@@ -13,8 +13,8 @@ public class Enemy extends Opponent{
 	
 	public Enemy() {
 		super();
-		this.jokeThreshold = (int)(Math.random()*MAX_JOKING_THRESHOLD);
-		this.fightThreshold = (int)(Math.random()*MAX_FIGHTING_THRESHOLD);
+		this.jokeThreshold = 1 + (int) (Math.random()*(MAX_JOKING_THRESHOLD - 1));
+		this.fightThreshold = 1 + (int) (Math.random()*(MAX_FIGHTING_THRESHOLD - 1));
 	}
 
 	// METHODS

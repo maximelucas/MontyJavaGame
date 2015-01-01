@@ -43,7 +43,7 @@ public class Controller implements KeyListener, ActionListener {
 			board.initBoard();
 			break;
 		case "High Scores": 
-			String highScore = board.getHighScoreManager().getHighScoreText();
+			String highScore = board.getHighScoreManager().getHighScore();
 			gui.showHighScore(highScore);	
 			break;
 		case "Exit": 	
@@ -142,7 +142,7 @@ public class Controller implements KeyListener, ActionListener {
 			board.initBoard(); 
 		 	break;
 		case 1:	//high scores
-			String highScore = board.getHighScoreManager().getHighScoreText();
+			String highScore = board.getHighScoreManager().getHighScore();
 			gui.showHighScore(highScore);		
 			break;
 		case 2: //close	
