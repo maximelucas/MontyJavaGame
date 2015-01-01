@@ -2,7 +2,7 @@ package model;
 
 public class Player {
 	
-	// VARIABLES ---------------------------
+	// VARIABLES 
 	
 	private Position position;
 	private int score = 0;
@@ -12,8 +12,7 @@ public class Player {
 	private int visionScope = 2;
 	private String skillChoice;
 	
-	
-	// CONSTRUCTOR --------------------------
+	// CONSTRUCTOR 
 	
 	public Player(Position position, int difficultyLevel) {
 		this.position = position;
@@ -39,15 +38,6 @@ public class Player {
 			this.fightingSkill = 1; 
 			this.jokingSkill = 1;
 		}
-	}
-
-	
-	public Player(int stepsLeft, int fightingSkill, int jokingSkill) {
-		this.stepsLeft = stepsLeft; 
-		this.fightingSkill = fightingSkill; 
-		this.jokingSkill = jokingSkill;
-		this.position = new Position(1,1);
-		this.score = 0;
 	}
 	
 	// METHODS ------------------------------
@@ -133,7 +123,9 @@ public class Player {
 		}
 	}
 	
+	@Override
 	public String toString() {
-		return "play \t"+position+"\t"+stepsLeft+"\t"+jokingSkill+"\t"+score+"\n";
+		return "play \t" + position + "\t"+ stepsLeft
+				+ "\t"+ jokingSkill + "\t"+ score + "\n";
 	}
 }

@@ -3,10 +3,10 @@ package model;
 public class Helper extends Opponent {
 	
 	// VARIABLES
-	private final int MIN_MAGIC = 5;
+	
+	private static final int MIN_MAGIC = 5;
 	private int magic;
 	private String[] options = {"joke", "fight", "magic"};
-
 	
 	// CONSTRUCTOR
 	
@@ -15,11 +15,6 @@ public class Helper extends Opponent {
 		this.magic = 3*( 1 + (int)(Math.random()*(MIN_MAGIC -1))); // generate magic between 5 and 15
 	}
 	
-	public Helper(int bonus, int magic) {
-		super(bonus);
-		this.magic = magic;
-	}
-
 	// METHODS
 	
 	public void interactWith(Player player) {

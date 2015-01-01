@@ -3,8 +3,8 @@ package model;
 public class Enemy extends Opponent{
 	
 	//  VARIABLES 
-	private static int MAX_JOKING_THRESHOLD = 10;
-	private static int MAX_FIGHTING_THRESHOLD = 10;
+	private static final int MAX_JOKING_THRESHOLD = 10;
+	private static final int MAX_FIGHTING_THRESHOLD = 10;
 	private int jokeThreshold;
 	private int fightThreshold;
 	private String[] options = {"joke", "fight"};
@@ -12,15 +12,9 @@ public class Enemy extends Opponent{
 	// CONSTRUCTOR
 	
 	public Enemy() {
-		super(5);
+		super();
 		this.jokeThreshold = (int)(Math.random()*MAX_JOKING_THRESHOLD);
 		this.fightThreshold = (int)(Math.random()*MAX_FIGHTING_THRESHOLD);
-	}
-
-	public Enemy(int bonus, int jokeThreshold, int fightThreshold) {
-		super(bonus);
-		this.jokeThreshold = jokeThreshold;
-		this.fightThreshold = fightThreshold;
 	}
 
 	// METHODS

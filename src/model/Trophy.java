@@ -11,7 +11,8 @@ public class Trophy extends Opponent {
 	// CONSTRUCTOR
 	
 	public Trophy() {
-		super(BONUS);
+		//super(BONUS);
+		this.setBonus(BONUS);
 	}
 	
 	// METHODS
