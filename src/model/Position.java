@@ -3,22 +3,19 @@ package model;
 public class Position {
 	
 	// VARIABLES
+	
 	int x;
 	int y;
 	
 	// CONSTRUCTOR
+	
 	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
 	// METHODS 
-	public void add(int dx, int dy) {
-		x += dx;
-		y += dy;
-	}
-	
-	
+
 	public Position plus(int x2, int y2) {
 		int finalX = x + x2;
 		int finalY = y + y2;
@@ -41,17 +38,6 @@ public class Position {
 		return (new Position(finalX, finalY));
 	}
 	
-	public void reverse() {
-		x = -x;
-		y = -y;
-	}
-	
-	public Position differenceVector(Position destination) {
-		Position result = this.minus(destination);
-		result.reverse();
-		return result;
-	}
-	
 	public static int manhattanDistance(Position pos1, Position pos2) {
 		Position deltaPos = pos1.minus(pos2);
 		int deltaX = deltaPos.getX();
@@ -64,7 +50,6 @@ public class Position {
 		return (x == position2.getX()
 				&& y == position2.getY());
 	}
-	
 	
 	// GETTERS
 	public int getX() {

@@ -124,8 +124,8 @@ public class Board extends Observable {
 	
 	public void makeMove(Position destination) {
 		if (isValidDestination(destination)) {
-			int oldX = player.getXPosition();
-			int oldY = player.getYPosition();
+			int oldX = player.getPosition().getX();
+			int oldY = player.getPosition().getY();
 			int newX = destination.getX();
 			int newY = destination.getY();
 			grid[oldX][oldY].setPlayer(null); // remove player from old tile
@@ -138,14 +138,14 @@ public class Board extends Observable {
 	}
 	
 	public boolean isInteractionPossible() {
-		int x = player.getXPosition();
-		int y = player.getYPosition();
+		int x = player.getPosition().getX();
+		int y = player.getPosition().getY();
 		return (grid[x][y].isInteractionPossible());
 	}
 	
 	public void handleInteraction(Player player) {
-		int x = player.getXPosition();
-		int y = player.getYPosition();
+		int x = player.getPosition().getX();
+		int y = player.getPosition().getY();
 		if (grid[x][y].isInteractionPossible()) {
 			grid[x][y].handleInteraction(player);
 		}

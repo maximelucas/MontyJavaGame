@@ -47,34 +47,26 @@ public class Player {
 		stepsLeft -= 1;
 	}
 	
-	public void increaseScore(int bonus) {
-		score += bonus;
+	public void increaseScore(int amount) {
+		score += amount;
 	}
 	
-	public void increaseStepsLeft(int bonus) {
-		stepsLeft+= bonus;
+	public void increaseStepsLeft(int amount) {
+		stepsLeft+= amount;
 	}
 	
-	public void increaseFightingSkill(int bonus) {
-		fightingSkill += bonus;
+	public void increaseFightingSkill(int amount) {
+		fightingSkill += amount;
 	}
 	
-	public void increaseJokingSkill(int bonus) {
-		jokingSkill += bonus;
+	public void increaseJokingSkill(int amount) {
+		jokingSkill += amount;
 	}
 	
 	// GETTERS 
 	
 	public Position getPosition() {
 		return position;
-	}
-	
-	public int getXPosition() {
-		return position.getX();
-	}
-	
-	public int getYPosition() {
-		return position.getY();
 	}
 	
 	public int getScore() {
