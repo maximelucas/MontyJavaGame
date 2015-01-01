@@ -2,7 +2,7 @@ package model;
 
 public abstract class Opponent {
 	
-	// VARIBABLES
+	// VARIABLES
 	
 	private int bonus; // amount of skill points the player earns from that opponent
 	private static final int MAX_BONUS = 5;

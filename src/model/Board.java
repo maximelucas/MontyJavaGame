@@ -193,7 +193,5 @@ public class Board extends Observable {
 		int y = activePosition.getY();
 		return grid[x][y];
 	}
-	// SETTERS 
-	
 	
 }
