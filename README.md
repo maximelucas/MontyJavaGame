@@ -11,9 +11,9 @@ One more thing ! You do not have much time, the police is looking after you.
 You killed that historian, remember ...?
 
 ##How to play
-The player plays alone with a knight (represented by the letter "p" for player) whose two main skills are fighting and joking.
-When you launch the game, you are asked to choose your difficulty level. **to be implemented**
-The difficulty level influences on the total of fighting and joking skill points the player begins with : more difficult, less skilled.
+The player plays alone with a knight (represented by the letter "p" for player) whose two main skills are fighting and joking.  
+When you launch the game, you are asked to choose your difficulty level. **to be implemented**  
+The difficulty level influences on the total of fighting and joking skill points the player begins with : more difficult, less skilled.  
 
 Now the game begins.
 The player finds himself on a map, represented by tiles, and can move using the arrow keys, one tile by one.
