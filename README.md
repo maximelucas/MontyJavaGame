@@ -18,5 +18,5 @@ The difficulty level influences on the total of fighting and joking skill points
 Now the game begins.
 The player finds himself on a map, represented by tiles, and can move using the arrow keys, one tile by one.
 The player can only see two tiles far around him, the rest hidden.
-The goal is to reach the tile where the Holy Grail (represented by a "t" for trophy) is.
+The goal is to reach the tile where the Holy Grail (represented by a "t" for trophy) is, and to be skilled enough (at least 15 fighting or joking skill points) to earn it and win.
 
