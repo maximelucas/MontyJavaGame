@@ -19,8 +19,6 @@ import model.Tile;
 @SuppressWarnings("serial")
 public class BoardRenderer extends JPanel implements Observer {
 	
-	// VARIABLES 
-	
 	// we want a square board with a fixed number of cells 
 	private final int BOARD_HEIGHT = 500;
 	private final int BOARD_WIDTH = BOARD_HEIGHT;
@@ -30,8 +28,6 @@ public class BoardRenderer extends JPanel implements Observer {
 	TileRenderer[][] tileRenderers = new TileRenderer[NUMBER_CELLS_PER_SIDE][NUMBER_CELLS_PER_SIDE];
 	private Icons icons = new Icons();
 
-	// CONSTRUCTORS
-	
 	public BoardRenderer() {
 		this.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 		this.setLayout(new GridLayout(NUMBER_CELLS_PER_SIDE, NUMBER_CELLS_PER_SIDE));
@@ -44,8 +40,6 @@ public class BoardRenderer extends JPanel implements Observer {
 		}
 		
 }	
-	
-	// METHODS
 	
 	public int askSkillChoice(Opponent opponent) {
     	int choice; // 0 joke, 1 fight, 2 steps
@@ -118,15 +112,7 @@ public class BoardRenderer extends JPanel implements Observer {
 		}
 	}
 	
-
-	
-	// GETTERS
-	
 	public Icons getIcons() {
 		return icons;
 	}
-	
-	
-	//SETTERS
-	
 }

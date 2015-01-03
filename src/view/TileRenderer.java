@@ -16,15 +16,11 @@ import model.Trophy;
 @SuppressWarnings("serial")
 public class TileRenderer extends JButton {
 	
-	
-	// VARIABLES
-	 
 	public final int TILE_SIZE = 40;
 	public final Color grassGreen = new Color(25, 143, 37);
 	public final Color roadGrey = new Color(119, 136, 153);
 	private ImageIcon icon = new ImageIcon("");
 	//private static Icons icons = new Icons();
-	// CONSTRUCTOR
 	
 	public TileRenderer() {
 		this.setMargin(new Insets(0,0,0,0));
@@ -43,8 +39,6 @@ public class TileRenderer extends JButton {
 		this.setBackground(color);
 	}
 	
-	// METHODS 
-
 	public void draw(Color color, ImageIcon icon) {
 		this.setBackground(color);
 		if (icon != null) {
@@ -95,11 +89,4 @@ public class TileRenderer extends JButton {
 			this.setBackground(Color.black);
 		}
 	}
-	
-	
-	// GETTERS
-	
-	// SETTERS 
-	
-	
 }

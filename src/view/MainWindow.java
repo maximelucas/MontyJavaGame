@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	
-	// VARIABLES
-	
 	private final String NAME = "Monty Java and the Holy Grail";
 	
 	private final int WINDOW_WIDTH = 1900;
@@ -31,8 +29,6 @@ public class MainWindow extends JFrame {
 	private KeyListener keyListener;
 	private ActionListener actionListener;
 	
-	// CONSTRUCTOR
-	
 	public MainWindow() {
 		super();
 		this.setTitle(NAME);
@@ -50,8 +46,6 @@ public class MainWindow extends JFrame {
 		this.setLocationRelativeTo(null); //appear at the center of the screen
 		this.setVisible(true);
 		}
-	
-	// METHODS 
 	
 	public void askExitConfirmation() {
 		int choice = JOptionPane.showConfirmDialog(	this, 
@@ -74,10 +68,6 @@ public class MainWindow extends JFrame {
 										JOptionPane.INFORMATION_MESSAGE);
 
 	}
-	
-    
-	
-	// GETTERS 
 	
 	public BoardRenderer getBoardRenderer() {
 		return boardRenderer;

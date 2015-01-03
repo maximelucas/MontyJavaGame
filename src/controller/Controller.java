@@ -19,8 +19,6 @@ public class Controller implements KeyListener, ActionListener {
 	Board board;
 	MainWindow gui;
 	
-	// CONSTRUCTOR 
-	
 	public Controller(Board board, MainWindow gui) {
 		this.board = board;
 		this.gui = gui;
@@ -30,9 +28,6 @@ public class Controller implements KeyListener, ActionListener {
 		gui.getMenuPanel().setActionListener(this);
 		board.initBoard();
 	}
-	
-	// METHODS 
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

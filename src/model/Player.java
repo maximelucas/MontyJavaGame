@@ -2,8 +2,6 @@ package model;
 
 public class Player {
 	
-	// VARIABLES 
-	
 	private Position position;
 	private int score = 0;
 	private int stepsLeft;
@@ -11,8 +9,6 @@ public class Player {
 	private int jokingSkill;
 	private int visionScope = 2;
 	private String skillChoice;
-	
-	// CONSTRUCTOR 
 	
 	public Player(Position position, int difficultyLevel) {
 		this.position = position;
@@ -39,8 +35,6 @@ public class Player {
 			this.jokingSkill = 1;
 		}
 	}
-	
-	// METHODS ------------------------------
 	
 	public void move(Position destination) {
 		setPosition(destination);

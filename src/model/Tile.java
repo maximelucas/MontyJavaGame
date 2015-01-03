@@ -2,19 +2,13 @@ package model;
 
 public class Tile {
 	
-	// VARIABLES 
-	
 	private String terrain;
 	private Opponent opponent;
 	private Player player;
 	
-	// CONSTRUCTORS
-	
 	public Tile(String terrain) {
 		this.terrain = terrain;
 	}
-	
-	// METHODS 
 	
 	public boolean isInteractionPossible() {
 		return (opponent != null);
@@ -23,8 +17,6 @@ public class Tile {
 	public void handleInteraction(Player player) {
 		this.opponent.interactWith(player);
 	}
-	
-	// GETTERS 
 	
 	public String getTerrain() {
 		return terrain;
@@ -38,8 +30,6 @@ public class Tile {
 		return player;
 	}
 
-	// SETTERS 
-	
 	public void setTerrain(String terrain) {
 		this.terrain = terrain;
 	}

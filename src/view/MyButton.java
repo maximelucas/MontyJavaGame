@@ -11,8 +11,6 @@ public class MyButton extends JButton{
 	Color colour2 = Color.white;
 	Font font = new Font("Helvetica", Font.PLAIN, 16);
 	
-	// CONSTRUCTOR
-	
 	public MyButton(String text) {
 		super(text);
 		this.setFont(font);

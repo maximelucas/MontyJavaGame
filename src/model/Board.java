@@ -4,8 +4,6 @@ import java.util.Observable;
 
 public class Board extends Observable {
 	
-	// VARIABLES 
-	
 	private Player player;
 	private Tile[][] grid = new Tile[WIDTH][HEIGHT];
 	private Trophy trophy;
@@ -26,11 +24,6 @@ public class Board extends Observable {
 	static final int xTrophy = (int) (WIDTH*0.75);
 	static final int yTrophy = (int) (HEIGHT*0.75);
 	
-	// CONSTRUCTOR
-	
-	
-	// METHODS 
-	
 	public void initBoard() {
 		
 		player = new Player(initialPosition, DIFFICULTY_LEVEL);
@@ -45,7 +38,7 @@ public class Board extends Observable {
 		// create all the tiles
 		for (int i=0; i<WIDTH; i++) {
 			for (int j=0; j<HEIGHT; j++) {
-				this.grid[i][j] = new Tile("grass");
+				grid[i][j] = new Tile("grass");
 			}
 		}
 		// add player
@@ -70,8 +63,8 @@ public class Board extends Observable {
 				numberOfHelpers ++;
 			}
 		}
-		this.setChanged();
-		this.notifyObservers();
+		setChanged();
+		notifyObservers();
 	}
 
 	
@@ -81,7 +74,7 @@ public class Board extends Observable {
 	
 	public Position computeDestination(String direction) {
 		Position position = player.getPosition();
-		Position destination = new Position(-10,-10); // TODO CHANGE THAT
+		Position destination = new Position(-10, -10); // TODO CHANGE THAT
 		switch(direction) {
 		case "left": 	
 			destination = position.plus(0,-1);
@@ -129,11 +122,11 @@ public class Board extends Observable {
 			int oldY = player.getPosition().getY();
 			int newX = destination.getX();
 			int newY = destination.getY();
-			grid[oldX][oldY].setPlayer(null); // remove player from old tile
-			player.move(destination); // move player
-			grid[newX][newY].setPlayer(player); // set player on new tile
-			this.setChanged(); 
-			this.notifyObservers(); // notify view of position change
+			grid[oldX][oldY].setPlayer(null);
+			player.move(destination); 
+			grid[newX][newY].setPlayer(player); 
+			setChanged(); 
+			notifyObservers(); 
 			activePosition = player.getPosition();
 		}
 	}
@@ -150,15 +143,13 @@ public class Board extends Observable {
 		if (grid[x][y].isInteractionPossible()) {
 			grid[x][y].handleInteraction(player);
 		}
-		this.setChanged();
-		this.notifyObservers(player);
-		if (this.getPlayer().getStepsLeft()==0 || trophy.getWon()) { // check if game is finished
+		setChanged();
+		notifyObservers(player);
+		if (player.getStepsLeft()==0 || trophy.getWon()) { // check if game is finished
 			gameFinished = true;
-			highScoreManager.setScore(this.getPlayer().getScore());
+			highScoreManager.setScore(player.getScore());
 		}
 	}
-	
-	// GETTERS
 	
 	public Player getPlayer() {
 		return player;

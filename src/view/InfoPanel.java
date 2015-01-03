@@ -15,8 +15,6 @@ import model.Position;
 @SuppressWarnings("serial")
 public class InfoPanel extends JPanel implements Observer {
 	
-	// VARIABLES 
-	
 	// player state info
 	private final JPanel playerInfoPanel = new JPanel();
 	private final JLabel tTimeLeft = new JLabel("Steps left");
@@ -33,16 +31,12 @@ public class InfoPanel extends JPanel implements Observer {
 	
 	private JLabel lInfoMessage = new JLabel("New game !");
 	
-	// CONSTRUCTOR
-	
 	public InfoPanel() {
 		// layout
 		this.setLayout(new GridLayout(1,2));
 		this.add(makePlayerInfoPanel());
 		this.add(makeMessagePanel());
 	}
-	
-	// METHODS 
 	
 	public JPanel makeMessagePanel() {
 		JPanel panel = new JPanel();
@@ -81,10 +75,6 @@ public class InfoPanel extends JPanel implements Observer {
 			this.setVScore(board.getPlayer().getScore());
 		}
 	}
-	
-	// GETTERS
-	
-	// SETTERS 
 	
 	public void setVTimeLeft(int value) {
 		this.vTimeLeft.setText(Integer.toString(value));
