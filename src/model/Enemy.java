@@ -16,21 +16,16 @@ public class Enemy extends Opponent{
 
 	public void interactWith(Player player) {
 		String choice = player.getSkillChoice();
-		if (choice=="fight" && player.getFightingSkill() > fightThreshold) {
+		if (choice == "fight" && player.getFightingSkill() > fightThreshold) {
 			increaseFightingSkill(player);
-			player.increaseScore(this.getBonus());
-		} else if (choice=="joke" && player.getJokingSkill() > jokeThreshold) {
-			this.increaseJokingSkill(player);
-			player.increaseScore(this.getBonus());
+			player.increaseScore(getBonus());
+		} else if (choice == "joke" && player.getJokingSkill() > jokeThreshold) {
+			increaseJokingSkill(player);
+			player.increaseScore(getBonus());
 		}
 	}
 	
 	public String[] getOptions() {
 		return options;
 	}
-	
-	public String toString() {
-		return "enem";
-	}
-	
 }

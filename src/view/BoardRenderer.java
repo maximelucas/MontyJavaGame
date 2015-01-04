@@ -19,30 +19,29 @@ import model.Tile;
 @SuppressWarnings("serial")
 public class BoardRenderer extends JPanel implements Observer {
 	
-	// we want a square board with a fixed number of cells 
-	private final int BOARD_HEIGHT = 500;
-	private final int BOARD_WIDTH = BOARD_HEIGHT;
 	private final int NUMBER_CELLS_PER_SIDE = 10;
-	private final int CELL_SIZE = BOARD_HEIGHT/NUMBER_CELLS_PER_SIDE;
+	private final int CELL_SIZE = 45; //in px
+	private final int BOARD_SIZE = CELL_SIZE*NUMBER_CELLS_PER_SIDE;
 	
 	TileRenderer[][] tileRenderers = new TileRenderer[NUMBER_CELLS_PER_SIDE][NUMBER_CELLS_PER_SIDE];
 	private Icons icons = new Icons();
 
 	public BoardRenderer() {
-		this.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
-		this.setLayout(new GridLayout(NUMBER_CELLS_PER_SIDE, NUMBER_CELLS_PER_SIDE));
-		
-		for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
-	 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
+		setPreferredSize(new Dimension(BOARD_SIZE, BOARD_SIZE));
+		setLayout(new GridLayout(NUMBER_CELLS_PER_SIDE, NUMBER_CELLS_PER_SIDE));
+		setBackground(MainWindow.color3);
+		for (int i = 0; i < NUMBER_CELLS_PER_SIDE; i++) {
+	 	 	for (int j = 0; j < NUMBER_CELLS_PER_SIDE; j++) {
 				tileRenderers[i][j] = new TileRenderer();
-	 			this.add(tileRenderers[i][j]);
+				add(tileRenderers[i][j]);
 			}
 		}
-		
-}	
+	}	
 	
-	public int askSkillChoice(Opponent opponent) {
-    	int choice; // 0 joke, 1 fight, 2 steps
+	
+	public String askSkillChoice(Opponent opponent) {
+    	int buttonPressed; // 0 joke, 1 fight, 2 steps
+    	String choice = "";
     	String message = "";
     	String title = "";
     	String[] options = {""};
@@ -61,7 +60,7 @@ public class BoardRenderer extends JPanel implements Observer {
     				  "Try to beat him with :";
     	}
     	
-    	choice = JOptionPane.showOptionDialog(	this, //parent pane
+    	buttonPressed = JOptionPane.showOptionDialog(	this, //parent pane
     											message,
     											title,
     											JOptionPane.YES_NO_CANCEL_OPTION, //type of options
@@ -69,6 +68,19 @@ public class BoardRenderer extends JPanel implements Observer {
     											null, //icon
     											options, //list of buttons
     											options[0]); //default focus on first button
+    	switch(buttonPressed) {
+    	case 0:
+    		choice = "joke";
+    		break;
+    	case 1:
+    		choice = "fight";
+    		break;
+    	case 2: 
+    		choice = "steps";
+    		break;
+    	default:
+    		;
+    	}
     	return choice;
     }
 	

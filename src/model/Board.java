@@ -16,7 +16,7 @@ public class Board extends Observable {
 	static final int TOTAL_NUMBER_OF_ENEMIES = 4; 
 	static final int TOTAL_NUMBER_OF_HELPERS = 4;
 	// user input
-	int DIFFICULTY_LEVEL = 1;
+	String difficultyLevel;
 	// initial values
 	static final int initialXPosition = 0;
 	static final int initialYPosition = 0;
@@ -26,7 +26,7 @@ public class Board extends Observable {
 	
 	public void initBoard() {
 		
-		player = new Player(initialPosition, DIFFICULTY_LEVEL);
+		player = new Player(initialPosition, difficultyLevel);
 		trophy = new Trophy();
 		activePosition = initialPosition;
 		gameFinished = false;
@@ -145,7 +145,7 @@ public class Board extends Observable {
 		}
 		setChanged();
 		notifyObservers(player);
-		if (player.getStepsLeft()==0 || trophy.getWon()) { // check if game is finished
+		if (player.getStepsLeft() == 0 || trophy.getWon()) { // check if game is finished
 			gameFinished = true;
 			highScoreManager.setScore(player.getScore());
 		}
@@ -183,6 +183,10 @@ public class Board extends Observable {
 		int x = activePosition.getX();
 		int y = activePosition.getY();
 		return grid[x][y];
+	}
+	
+	public void setDifficultyLevel(String level) {
+		this.difficultyLevel = level;
 	}
 	
 }

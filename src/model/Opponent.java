@@ -6,7 +6,7 @@ public abstract class Opponent {
 	private static final int MAX_BONUS = 5;
 	
 	public Opponent() {
-		this.bonus = 1 + (int)(Math.random()*(MAX_BONUS-1)); // generate bonus between 1 and 5
+		this.bonus = 1 + (int)(Math.random()*(MAX_BONUS - 1)); // generate bonus between 1 and 5
 	}
 	
 	public abstract void interactWith(Player player);

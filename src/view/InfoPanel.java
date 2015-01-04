@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,8 +28,6 @@ public class InfoPanel extends JPanel implements Observer {
 	private JLabel vBag = new JLabel("");
 	private JLabel vScore = new JLabel("");
 	
-	private JLabel lInfoMessage = new JLabel("New game !");
-	
 	public InfoPanel() {
 		// layout
 		this.setLayout(new GridLayout(1,2));
@@ -40,15 +37,15 @@ public class InfoPanel extends JPanel implements Observer {
 	
 	public JPanel makeMessagePanel() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(5,1));
-		panel.add(lInfoMessage);
+		panel.setBackground(MainWindow.color2);
 		return panel;
 	}
 	
 	public JPanel makePlayerInfoPanel() {
 		JPanel panel = playerInfoPanel;
 		panel.setLayout(new GridLayout(5,2));
-		panel.setBackground(Color.red);
+		panel.setBackground(MainWindow.color1);
+		panel.setForeground(MainWindow.color3);
 		
 		// adding all the labels to the panel
 		panel.add(tTimeLeft);

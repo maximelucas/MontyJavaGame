@@ -2,37 +2,66 @@ package model;
 
 public class Player {
 	
-	private Position position;
 	private int score = 0;
+	private int visionScope = 2;
+	private Position position;
 	private int stepsLeft;
 	private int fightingSkill;
 	private int jokingSkill;
-	private int visionScope = 2;
 	private String skillChoice;
 	
-	public Player(Position position, int difficultyLevel) {
+	public Player(Position position, String difficultyLevel) {
 		this.position = position;
-		
 		switch(difficultyLevel) {
-		case 1:	
+		case "easy":	
 			this.stepsLeft = 150; 
 			this.fightingSkill = 5; 
 			this.jokingSkill = 5;
-
-		case 2: 
+			break;
+		case "medium": 
 			this.stepsLeft = 150; 
 			this.fightingSkill = 2; 
 			this.jokingSkill = 2;
-				
-		case 3: 
+			break;	
+		case "difficult": 
 			this.stepsLeft = 100; 
 			this.fightingSkill = 2; 
 			this.jokingSkill = 2;
-				
-		case 4: 
+			break;	
+		case "impossible": 
 			this.stepsLeft = 10; 
 			this.fightingSkill = 1; 
 			this.jokingSkill = 1;
+			break;
+		default:
+			;
+		}
+	}
+	
+	public void setDifficulty(String difficultyLevel) {
+		switch(difficultyLevel) {
+		case "easy":	
+			this.stepsLeft = 150; 
+			this.fightingSkill = 5; 
+			this.jokingSkill = 5;
+			break;
+		case "medium": 
+			this.stepsLeft = 150; 
+			this.fightingSkill = 2; 
+			this.jokingSkill = 2;
+			break;	
+		case "difficult": 
+			this.stepsLeft = 100; 
+			this.fightingSkill = 2; 
+			this.jokingSkill = 2;
+			break;	
+		case "impossible": 
+			this.stepsLeft = 10; 
+			this.fightingSkill = 1; 
+			this.jokingSkill = 1;
+			break;
+		default:
+			;
 		}
 	}
 	
@@ -56,8 +85,6 @@ public class Player {
 	public void increaseJokingSkill(int amount) {
 		jokingSkill += amount;
 	}
-	
-	// GETTERS 
 	
 	public Position getPosition() {
 		return position;
@@ -87,31 +114,11 @@ public class Player {
 		return visionScope;
 	}
 	
-	// SETTERS
-	
 	public void setPosition(Position position) {
 		this.position = position;
 	}
 	
-	public void setSkillChoice(int choice) {
-		switch(choice) {
-		case 0:
-			this.skillChoice = "joke";
-			break;
-		case 1:
-			this.skillChoice = "fight";
-			break;
-		case 2:
-			this.skillChoice = "steps";
-			break;
-		default:
-			;
-		}
-	}
-	
-	@Override
-	public String toString() {
-		return "play \t" + position + "\t"+ stepsLeft
-				+ "\t"+ jokingSkill + "\t"+ score + "\n";
+	public void setSkillChoice(String choice) {
+		this.skillChoice = choice;
 	}
 }

@@ -25,9 +25,4 @@ public class Trophy extends Opponent {
 	public boolean getWon() {
 		return won;
 	}
-		
-	public String toString() {
-		return "trop";
-	}
-	
 }

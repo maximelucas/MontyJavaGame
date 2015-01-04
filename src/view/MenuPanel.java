@@ -16,6 +16,7 @@ public class MenuPanel extends JPanel {
 	
 	public MenuPanel() {
 		setLayout(new FlowLayout());
+		setBackground(MainWindow.color2);
 		add(newGame);
 		add(highScores);
 		add(exit);

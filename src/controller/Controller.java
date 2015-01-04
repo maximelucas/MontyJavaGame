@@ -8,10 +8,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 
 import model.Board;
-import model.Position;
 import model.Opponent;
+import model.Position;
 import model.Trophy;
-import view.EndOfGameDialogBox;
 import view.MainWindow;
 
 public class Controller implements KeyListener, ActionListener {
@@ -22,6 +21,8 @@ public class Controller implements KeyListener, ActionListener {
 	public Controller(Board board, MainWindow gui) {
 		this.board = board;
 		this.gui = gui;
+		String difficultyLevel = gui.askDifficulty();
+		board.setDifficultyLevel(difficultyLevel);
 		board.addObserver(gui.getBoardRenderer());
 		board.addObserver(gui.getInfoPanel());
 		gui.addKeyListener(this);
@@ -34,7 +35,9 @@ public class Controller implements KeyListener, ActionListener {
 		String action = e.getActionCommand();
 		
 		switch(action) {
-		case "New Game":	
+		case "New Game":
+			String difficultyLevel = gui.askDifficulty();
+			board.setDifficultyLevel(difficultyLevel);
 			board.initBoard();
 			break;
 		case "High Scores": 
@@ -77,7 +80,7 @@ public class Controller implements KeyListener, ActionListener {
 	        	if (board.isInteractionPossible()) {
         			Opponent opponent = board.getActiveTile().getOpponent();
         			if (!(opponent instanceof Trophy)) {
-        				int choice = gui.getBoardRenderer().askSkillChoice(opponent);
+        				String choice = gui.getBoardRenderer().askSkillChoice(opponent);
         				board.getPlayer().setSkillChoice(choice);
         			}
 	        	}
@@ -103,6 +106,7 @@ public class Controller implements KeyListener, ActionListener {
     public void handleEndOfGame() {
     	String title;
     	String message;
+    	int choice;
     	if (board.getTrophy().getWon()) {
     		title = "Victory !";
     		message = "You won !\n"+
@@ -127,13 +131,17 @@ public class Controller implements KeyListener, ActionListener {
     	    board.getHighScoreManager().storeScore(name);
     	}
     	
-    	EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
+    	//EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
 		
-		switch (box.getChoice()) { // take action depending on user's answer to dialog
+    	choice = gui.askEndOfGameChoice();
+    	
+		switch (choice) { // take action depending on user's answer to dialog
 		case -1: //close
 			;
 			break;
 		case 0: //new game
+			String difficultyLevel = gui.askDifficulty();
+			board.setDifficultyLevel(difficultyLevel);
 			board.initBoard(); 
 		 	break;
 		case 1:	//high scores

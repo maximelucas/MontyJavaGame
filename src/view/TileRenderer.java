@@ -86,7 +86,7 @@ public class TileRenderer extends JButton {
 				;			
 			}
 		} else {
-			this.setBackground(Color.black);
+			this.setBackground(MainWindow.color3);
 		}
 	}
 }

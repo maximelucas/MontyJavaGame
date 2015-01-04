@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -13,14 +14,9 @@ public class MainWindow extends JFrame {
 	
 	private final String NAME = "Monty Java and the Holy Grail";
 	
-	private final int WINDOW_WIDTH = 1900;
-	private final int WINDOW_HEIGHT = 1900;
-	
-	private final int BOARD_HEIGHT = 500;
-	private final int BOARD_WIDTH = 500;
-	
-//	private final int CELL_SIDE = 40;
-//	private final int NUMBER_CELLS_SIDE = BOARD_WIDTH/CELL_SIDE;
+	protected final static Color color1 = new Color(118,137,169);
+	protected final static Color color2 = new Color(44,71,112);
+	protected final static Color color3 = new Color(5,25,56);
 	
 	private BoardRenderer boardRenderer = new BoardRenderer();
 	private MenuPanel menuPanel = new MenuPanel();
@@ -31,20 +27,20 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow() {
 		super();
-		this.setTitle(NAME);
-		this.setLayout(new BorderLayout());
-		this.add(boardRenderer, BorderLayout.CENTER);
-		this.add(menuPanel, BorderLayout.NORTH);
-		this.add(infoPanel, BorderLayout.SOUTH);
+		setTitle(NAME);
+		setLayout(new BorderLayout());
+		add(boardRenderer, BorderLayout.CENTER);
+		add(menuPanel, BorderLayout.NORTH);
+		add(infoPanel, BorderLayout.SOUTH);
         // ensure minimum size show all the components
-		this.pack();
-        this.setMinimumSize(getSize());
-        this.setFocusable(true);
-		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		this.setFocusable(true);
-		this.requestFocus();      // Give the panel focus.
-		this.setLocationRelativeTo(null); //appear at the center of the screen
-		this.setVisible(true);
+		pack();
+        setMinimumSize(getSize());
+        setFocusable(true);
+		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		setFocusable(true);
+		requestFocus();      	
+		setLocationRelativeTo(null); 
+		setVisible(true);
 		}
 	
 	public void askExitConfirmation() {
@@ -66,7 +62,33 @@ public class MainWindow extends JFrame {
 										message, 
 										"High Score", 
 										JOptionPane.INFORMATION_MESSAGE);
-
+	}
+	
+	public int askEndOfGameChoice() {
+		int choice;
+		String[] options = {"New Game", "High Scores", "Exit"};
+    	choice = JOptionPane.showOptionDialog(	this, 
+								    			"What is next ?",
+												"End of Game",
+												JOptionPane.YES_NO_CANCEL_OPTION, 
+												JOptionPane.QUESTION_MESSAGE, 
+												null,
+												options,
+												options[0]);
+    	return choice;
+    	}
+	
+	public String askDifficulty() {
+		String[] options = {"easy", "medium", "difficult", "impossible"};
+		int buttonPressed;
+    	buttonPressed = JOptionPane.showOptionDialog(	this, 
+    													"Please choose the difficulty",
+														"Welcome to the Holy Grail quest !",
+														JOptionPane.YES_NO_CANCEL_OPTION,														JOptionPane.QUESTION_MESSAGE, //type of message
+														null, 
+														options,
+														options[0]);
+    	return options[buttonPressed];
 	}
 	
 	public BoardRenderer getBoardRenderer() {
