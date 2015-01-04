@@ -2,8 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
@@ -21,9 +19,6 @@ public class MainWindow extends JFrame {
 	private BoardRenderer boardRenderer = new BoardRenderer();
 	private MenuPanel menuPanel = new MenuPanel();
 	private InfoPanel infoPanel = new InfoPanel();
-	
-	private KeyListener keyListener;
-	private ActionListener actionListener;
 	
 	public MainWindow() {
 		super();
@@ -101,9 +96,5 @@ public class MainWindow extends JFrame {
 	
 	public MenuPanel getMenuPanel() {
 		return menuPanel;
-	}
-	
-	public void setActionListener(ActionListener actionListener) {
-		this.actionListener = actionListener;
 	}
 }

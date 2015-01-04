@@ -12,9 +12,7 @@ import model.Board;
 import model.Enemy;
 import model.Helper;
 import model.Opponent;
-import model.Player;
 import model.Position;
-import model.Tile;
 
 @SuppressWarnings("serial")
 public class BoardRenderer extends JPanel implements Observer {
@@ -60,14 +58,14 @@ public class BoardRenderer extends JPanel implements Observer {
     				  "Try to beat him with :";
     	}
     	
-    	buttonPressed = JOptionPane.showOptionDialog(	this, //parent pane
-    											message,
-    											title,
-    											JOptionPane.YES_NO_CANCEL_OPTION, //type of options
-    											JOptionPane.QUESTION_MESSAGE, //type of message
-    											null, //icon
-    											options, //list of buttons
-    											options[0]); //default focus on first button
+    	buttonPressed = JOptionPane.showOptionDialog(	this, 
+		    											message,
+		    											title,
+		    											JOptionPane.YES_NO_CANCEL_OPTION, 
+		    											JOptionPane.QUESTION_MESSAGE, 
+		    											null, 
+		    											options, 
+		    											options[0]);
     	switch(buttonPressed) {
     	case 0:
     		choice = "joke";
@@ -88,26 +86,7 @@ public class BoardRenderer extends JPanel implements Observer {
 	public void update(Observable observable, Object object) {
 		Board board = (Board) observable;
 		
-		if (object instanceof Position) {
-			Position newPos = (Position) object;
-			Position oldPos = board.getActivePosition();
-			int oldX = oldPos.getX();
-			int oldY = oldPos.getY();
-			int newX = newPos.getX();
-			int newY = newPos.getY();
-			Tile oldTile = board.getTile(oldX, oldY);
-			Tile newTile = board.getTile(newX, newY);
-			tileRenderers[oldX][oldY].update(oldTile);
-			tileRenderers[newX][newY].update(newTile);
-			
-			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
-		 	 	for (int j=0; j<NUMBER_CELLS_PER_SIDE; j++) {
-		 	 		int distanceOld = Position.manhattanDistance(new Position(i,j), oldPos);
-		 	 		int distanceNew = Position.manhattanDistance(new Position(i,j), newPos);
-		 	 	}
-			}
-			
-		} else if (object==null) {
+		if (object==null) {
 			Position activePosition = board.getPlayer().getPosition();
 			int scope = board.getPlayer().getVisionScope();	
 			for (int i=0; i<NUMBER_CELLS_PER_SIDE; i++) {
@@ -119,8 +98,6 @@ public class BoardRenderer extends JPanel implements Observer {
 	 	 										scope);
 	 	 		}
 	 	 	}
-		} else if (object instanceof Player) {
-			;
 		}
 	}
 	

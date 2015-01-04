@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,60 +19,43 @@ public class TileRenderer extends JButton {
 	public final Color grassGreen = new Color(25, 143, 37);
 	public final Color roadGrey = new Color(119, 136, 153);
 	private ImageIcon icon = new ImageIcon("");
-	//private static Icons icons = new Icons();
 	
 	public TileRenderer() {
-		this.setMargin(new Insets(0,0,0,0));
-		this.setBackground(grassGreen);
+		setBackground(grassGreen);
+		setFocusable(false);
+	}
+	
+	public TileRenderer(String terrain) {
+		switch(terrain) {
+		case "grass":
+			setBackground(grassGreen);
+			break;
+		case "road":
+			setBackground(roadGrey);
+			break;
+		default:
+			;
+		}
 		this.setFocusable(false);
 	}
 	
-	public TileRenderer(String text) {
-		this.setMargin(new Insets(0,0,0,0));
-		this.setBackground(grassGreen);
-		this.setFocusable(false);
-	}
-	
-	public TileRenderer(Color color) {
-		this.setMargin(new Insets(0,0,0,0));
+	public void draw(Color color) {
 		this.setBackground(color);
 	}
-	
-	public void draw(Color color, ImageIcon icon) {
-		this.setBackground(color);
-		if (icon != null) {
-			this.setIcon(icon);
-		}
-	}
-	
-	public void update(Tile tile) {
-		
-		if (tile.getPlayer()==null && tile.getOpponent()==null) {
-			this.setIcon(icon);
-		} else if (tile.getPlayer()!=null) {
-			this.setIcon(Icons.player);
-		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Helper) {
-			this.setIcon(Icons.helper);
-		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Enemy) {
-			this.setIcon(Icons.enemy);
-		} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Trophy) {
-			this.setIcon(Icons.trophy);
-		}
-	}
-		
+
 	public void update(Tile tile, Position position, Position activePosition, int scope) {
 		
 		if (Position.manhattanDistance(position, activePosition) <= scope ) {
 			if (tile.getPlayer()==null && tile.getOpponent()==null) {
-				this.setIcon(icon);
+				setIcon(icon);
 			} else if (tile.getPlayer()!=null) {
-				this.setIcon(Icons.player);
+				setIcon(Icons.player);
 			} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Helper) {
-				this.setIcon(Icons.helper);
+				setIcon(Icons.helper);
 			} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Enemy) {
-				this.setIcon(Icons.enemy);
+				setIcon(Icons.enemy);
 			} else if (tile.getPlayer()==null && tile.getOpponent() instanceof Trophy) {
-				this.setIcon(Icons.trophy);
+				setIcon(Icons.trophy);
 			}
 			switch(tile.getTerrain()) {
 			case "grass": 
@@ -86,7 +68,7 @@ public class TileRenderer extends JButton {
 				;			
 			}
 		} else {
-			this.setBackground(MainWindow.color3);
+			this.setBackground(Color.black);
 		}
 	}
 }

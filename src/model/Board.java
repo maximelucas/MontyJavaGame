@@ -35,17 +35,18 @@ public class Board extends Observable {
 		int numberOfHelpers = 0;
 		int numberOfEnemies = 0;
 		
-		// create all the tiles
 		for (int i=0; i<WIDTH; i++) {
 			for (int j=0; j<HEIGHT; j++) {
-				grid[i][j] = new Tile("grass");
+				double random = Math.random();
+				if (random < 0.2) {
+					grid[i][j] = new Tile("road");
+				} else {
+					grid[i][j] = new Tile("grass");
+				}
 			}
 		}
-		// add player
 		grid[initialXPosition][initialYPosition].setPlayer(player);
-		// add trophy
 		grid[xTrophy][yTrophy].setOpponent(trophy);	
-		// randomly add enemies (only on even coordinates to spread them)
 		while (numberOfEnemies < TOTAL_NUMBER_OF_ENEMIES) {
 			int x = 2*(1 + (int)(Math.random()*(WIDTH/2-1)));
 			int y = 2*(1 + (int)(Math.random()*(HEIGHT/2-1)));
@@ -54,7 +55,6 @@ public class Board extends Observable {
 				numberOfEnemies ++;
 			}
 		}
-		// randomly add helpers (only on even coordinates to spread them)
 		while (numberOfHelpers < TOTAL_NUMBER_OF_HELPERS) {
 			int x = 2*(1 + (int)(Math.random()*(WIDTH/2-1)));
 			int y = 2*(1 + (int)(Math.random()*(HEIGHT/2-1)));
@@ -125,6 +125,9 @@ public class Board extends Observable {
 			grid[oldX][oldY].setPlayer(null);
 			player.move(destination); 
 			grid[newX][newY].setPlayer(player); 
+			if (grid[newX][newY].getTerrain() == "grass") {
+				player.increaseStepsLeft(-1);
+			}
 			setChanged(); 
 			notifyObservers(); 
 			activePosition = player.getPosition();

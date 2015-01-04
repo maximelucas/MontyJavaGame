@@ -45,12 +45,12 @@ public class Controller implements KeyListener, ActionListener {
 			gui.showHighScore(highScore);	
 			break;
 		case "Exit": 	
-			gui.askExitConfirmation(); // ask for confirmation
+			gui.askExitConfirmation();
 			break;
 		default:
 			;
 		}
-		gui.requestFocus(); //ensure reaction to arrow keys pressed again
+		gui.requestFocus(); 
 	}
 	
 	
@@ -131,8 +131,6 @@ public class Controller implements KeyListener, ActionListener {
     	    board.getHighScoreManager().storeScore(name);
     	}
     	
-    	//EndOfGameDialogBox box = new EndOfGameDialogBox(gui.getBoardRenderer());
-		
     	choice = gui.askEndOfGameChoice();
     	
 		switch (choice) { // take action depending on user's answer to dialog

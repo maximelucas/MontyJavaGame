@@ -14,24 +14,24 @@ public class Player {
 		this.position = position;
 		switch(difficultyLevel) {
 		case "easy":	
-			this.stepsLeft = 150; 
-			this.fightingSkill = 5; 
-			this.jokingSkill = 5;
+			stepsLeft = 50; 
+			fightingSkill = 8; 
+			jokingSkill = 8;
 			break;
 		case "medium": 
-			this.stepsLeft = 150; 
-			this.fightingSkill = 2; 
-			this.jokingSkill = 2;
+			stepsLeft = 30; 
+			fightingSkill = 2; 
+			jokingSkill = 2;
 			break;	
 		case "difficult": 
-			this.stepsLeft = 100; 
-			this.fightingSkill = 2; 
-			this.jokingSkill = 2;
+			stepsLeft = 20; 
+			fightingSkill = 2; 
+			jokingSkill = 2;
 			break;	
 		case "impossible": 
-			this.stepsLeft = 10; 
-			this.fightingSkill = 1; 
-			this.jokingSkill = 1;
+			stepsLeft = 10; 
+			fightingSkill = 1; 
+			jokingSkill = 1;
 			break;
 		default:
 			;
@@ -67,7 +67,6 @@ public class Player {
 	
 	public void move(Position destination) {
 		setPosition(destination);
-		stepsLeft -= 1;
 	}
 	
 	public void increaseScore(int amount) {
