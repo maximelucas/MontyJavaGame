@@ -16,9 +16,9 @@ public class MainWindow extends JFrame {
 	protected final static Color color2 = new Color(44,71,112);
 	protected final static Color color3 = new Color(5,25,56);
 	
-	private BoardRenderer boardRenderer = new BoardRenderer();
+	private BoardRenderer boardRenderer = new BoardRenderer(); // with map
 	private MenuPanel menuPanel = new MenuPanel();
-	private InfoPanel infoPanel = new InfoPanel();
+	private InfoPanel infoPanel = new InfoPanel(); //with player info
 	
 	public MainWindow() {
 		super();
@@ -27,7 +27,6 @@ public class MainWindow extends JFrame {
 		add(boardRenderer, BorderLayout.CENTER);
 		add(menuPanel, BorderLayout.NORTH);
 		add(infoPanel, BorderLayout.SOUTH);
-        // ensure minimum size show all the components
 		pack();
         setMinimumSize(getSize());
         setFocusable(true);
@@ -38,6 +37,9 @@ public class MainWindow extends JFrame {
 		setVisible(true);
 		}
 	
+	/*
+	 * show dialog box to ask user for exit confirmation
+	 */
 	public void askExitConfirmation() {
 		int choice = JOptionPane.showConfirmDialog(	this, 
 													"Do you really want to close ?",
@@ -50,6 +52,9 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
+	/*
+	 * show dialog box with current high score
+	 */
 	public void showHighScore(String highScore) {
 		String message = "Current High Score \n"
 						+ highScore;
@@ -59,6 +64,9 @@ public class MainWindow extends JFrame {
 										JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/*
+	 * show dialog box to ask user choice when game is finished
+	 */
 	public int askEndOfGameChoice() {
 		int choice;
 		String[] options = {"New Game", "High Scores", "Exit"};
@@ -73,6 +81,9 @@ public class MainWindow extends JFrame {
     	return choice;
     	}
 	
+	/*
+	 * show dialog box to ask user for difficulty
+	 */
 	public String askDifficulty() {
 		String[] options = {"easy", "medium", "difficult", "impossible"};
 		int buttonPressed;

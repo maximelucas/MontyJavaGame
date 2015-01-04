@@ -4,8 +4,8 @@ public class Enemy extends Opponent{
 	
 	private static final int MAX_JOKING_THRESHOLD = 10;
 	private static final int MAX_FIGHTING_THRESHOLD = 10;
-	private int jokeThreshold;
-	private int fightThreshold;
+	private int jokeThreshold; // to be beaten by player to gain points
+	private int fightThreshold; // to be beaten by player to gain points
 	private String[] options = {"joke", "fight"};
 	
 	public Enemy() {
@@ -14,6 +14,10 @@ public class Enemy extends Opponent{
 		this.fightThreshold = 1 + (int) (Math.random()*(MAX_FIGHTING_THRESHOLD - 1));
 	}
 
+	/*
+	 * based on the player's choice of interaction, check if players win, and increase 
+	 * his skill points accordingly if so
+	 */
 	public void interactWith(Player player) {
 		String choice = player.getSkillChoice();
 		if (choice == "fight" && player.getFightingSkill() > fightThreshold) {

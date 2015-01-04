@@ -12,8 +12,8 @@ public class HighScoreManager {
 	// VARIABLE 
 
 	private String highScore; // format name:highscore
-	private int highScoreValue;
-	private int score;
+	private int highScoreValue; //just the value of the high score
+	private int score; //current score
 	
 	// CONSTRUCTOR 
 	
@@ -24,10 +24,16 @@ public class HighScoreManager {
 	
 	//  METHODS 
 	
+	/*
+	 * return true if current score beats high score
+	 */
 	public boolean isHighScore() {
 		return (score >= highScoreValue && score > 0);
 	}
 	
+	/*
+	 * write new high score to file
+	 */
 	public void storeScore(String name) {
 		File scoreFile = new File("highscore.dat");
 		if (!scoreFile.exists()) {
@@ -55,6 +61,9 @@ public class HighScoreManager {
 		}
 	}
 	
+	/*
+	 * get existing high score from file
+	 */
 	public String getHighScore() {
 		// format name:score
 		BufferedReader reader = null;

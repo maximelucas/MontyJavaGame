@@ -8,10 +8,13 @@ public class Trophy extends Opponent {
 	private boolean won = false;
 	
 	public Trophy() {
-		//super(BONUS);
 		this.setBonus(BONUS);
 	}
 	
+	/*
+	 * trophy gets won only if the player has enough joking or fighting skills,
+	 * and if so increase his score
+	 */
 	public void interactWith(Player player) {
 		if (player.getJokingSkill() > JOKING_THRESHOLD) {
 			won = true;

@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 
 public class Icons {
 		
-	public final static String imagesSrc = "src/resources/";
+	public final static String imagesSrc = "/resources/";
 	
-	public final static ImageIcon player = new ImageIcon(imagesSrc + "player.png");
-	public final static ImageIcon helper = new ImageIcon(imagesSrc + "helper.png");
-	public final static ImageIcon enemy = new ImageIcon(imagesSrc + "enemy.png");
-	public final static ImageIcon trophy = new ImageIcon(imagesSrc + "trophy.png");
+	public final ImageIcon player = new ImageIcon(getClass().getResource(imagesSrc + "player.png"));
+	public final ImageIcon helper = new ImageIcon(getClass().getResource(imagesSrc + "helper.png"));
+	public final ImageIcon enemy = new ImageIcon(getClass().getResource(imagesSrc + "enemy.png"));
+	public final ImageIcon trophy = new ImageIcon(getClass().getResource(imagesSrc + "trophy.png"));
 	
 }

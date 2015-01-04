@@ -4,12 +4,12 @@ import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Board;
 import model.Player;
-import model.Position;
 
 @SuppressWarnings("serial")
 public class InfoPanel extends JPanel implements Observer {
@@ -19,48 +19,47 @@ public class InfoPanel extends JPanel implements Observer {
 	private final JLabel tTimeLeft = new JLabel("Steps left");
 	private final JLabel tJokingSkill = new JLabel("Joking skill");
 	private final JLabel tFightingSkill = new JLabel("Fighting skill");
-	private final JLabel tBag = new JLabel("Bag");
 	private final JLabel tScore = new JLabel("Score");
 	// creating the label with the actual value of the variables
 	private JLabel vTimeLeft = new JLabel("");
 	private JLabel vJokingSkill= new JLabel("");
 	private JLabel vFightingSkill = new JLabel("");
-	private JLabel vBag = new JLabel("");
 	private JLabel vScore = new JLabel("");
 	
 	public InfoPanel() {
-		// layout
-		this.setLayout(new GridLayout(1,2));
-		this.add(makePlayerInfoPanel());
-		this.add(makeMessagePanel());
+		setLayout(new GridLayout(1,2));
+		add(makePlayerInfoPanel());
+		add(makeMessagePanel());
 	}
 	
 	public JPanel makeMessagePanel() {
 		JPanel panel = new JPanel();
 		panel.setBackground(MainWindow.color2);
+		panel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, MainWindow.color2));
 		return panel;
 	}
 	
 	public JPanel makePlayerInfoPanel() {
 		JPanel panel = playerInfoPanel;
-		panel.setLayout(new GridLayout(5,2));
+		panel.setLayout(new GridLayout(4,2));
+		panel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, MainWindow.color1));
 		panel.setBackground(MainWindow.color1);
 		panel.setForeground(MainWindow.color3);
 		
-		// adding all the labels to the panel
 		panel.add(tTimeLeft);
 		panel.add(vTimeLeft);
 		panel.add(tJokingSkill);
 		panel.add(vJokingSkill);
 		panel.add(tFightingSkill);
 		panel.add(vFightingSkill);
-		panel.add(tBag);
-		panel.add(vBag);
 		panel.add(tScore);
 		panel.add(vScore);
 		return panel;
 	}
 	
+	/*
+	 * update player info after each turn 
+	 */
 	@Override
 	public void update(Observable observable, Object object) {
 		Board board = (Board) observable;
@@ -68,7 +67,6 @@ public class InfoPanel extends JPanel implements Observer {
 			this.setVTimeLeft(board.getPlayer().getStepsLeft());
 			this.setVJokingSkill(board.getPlayer().getJokingSkill());
 			this.setVFightingSkill(board.getPlayer().getFightingSkill());
-			this.setVBag(board.getPlayer().getPosition());
 			this.setVScore(board.getPlayer().getScore());
 		}
 	}
@@ -85,14 +83,6 @@ public class InfoPanel extends JPanel implements Observer {
 		this.vFightingSkill.setText(Integer.toString(value));
 	}
 
-	public void setVBag(Position position) {
-//		String content = "";
-//		for (String element : bag) {
-//			content += element;
-//		}
-		this.vBag.setText(position.toString());
-	}
-	
 	public void setVScore(int value) {
 		this.vScore.setText(Integer.toString(value));
 	}

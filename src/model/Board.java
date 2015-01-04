@@ -24,6 +24,12 @@ public class Board extends Observable {
 	static final int xTrophy = (int) (WIDTH*0.75);
 	static final int yTrophy = (int) (HEIGHT*0.75);
 	
+	/*
+	 * initialise board by creating tiles and placing enemies, helpers, the trophy, and the player
+	 * and initialising the variables
+	 */
+	
+	
 	public void initBoard() {
 		
 		player = new Player(initialPosition, difficultyLevel);
@@ -67,14 +73,20 @@ public class Board extends Observable {
 		notifyObservers();
 	}
 
-	
+	/*
+	 * check if game is over
+	 */
 	public boolean isGameOver() {
 		return (player.getStepsLeft() == 0 && trophy.getWon());
 	}
 	
+	
+	/*
+	 * compute destination from input direction
+	 */
 	public Position computeDestination(String direction) {
 		Position position = player.getPosition();
-		Position destination = new Position(-10, -10); // TODO CHANGE THAT
+		Position destination = position;
 		switch(direction) {
 		case "left": 	
 			destination = position.plus(0,-1);
@@ -95,6 +107,9 @@ public class Board extends Observable {
 		return destination;
 	}
 	
+	/*
+	 * return true if destination is in bounds
+	 */
 	public boolean isWithinBounds(Position destination) {
 		int x = destination.getX();
 		int y = destination.getY();
@@ -104,6 +119,9 @@ public class Board extends Observable {
 				&& 	y < HEIGHT);
 	}
 	
+	/*
+	 * return true if destination is on a tile adjacent to player
+	 */
 	public boolean isAdjacent(Position destination) {
 		Position position = player.getPosition();
 		return(		position.plus(0, +1).equals(destination)
@@ -112,10 +130,17 @@ public class Board extends Observable {
 				|| 	position.plus(-1, 0).equals(destination)); 
 	}
 	
+	/*
+	 * return true if destination is valid
+	 */
 	public boolean isValidDestination(Position destination) {
 		return (isAdjacent(destination) && isWithinBounds(destination)) ;
 	}
 	
+	/*
+	 * given a destination, erase player from old tile, set it on new tile
+	 * move player, and notify view
+	 */
 	public void makeMove(Position destination) {
 		if (isValidDestination(destination)) {
 			int oldX = player.getPosition().getX();
@@ -134,12 +159,18 @@ public class Board extends Observable {
 		}
 	}
 	
+	/*
+	 * return true if there is an opponent on the player's tile
+	 */
 	public boolean isInteractionPossible() {
 		int x = player.getPosition().getX();
 		int y = player.getPosition().getY();
 		return (grid[x][y].isInteractionPossible());
 	}
 	
+	/*
+	 * handle interaction between player and oppponent
+	 */
 	public void handleInteraction(Player player) {
 		int x = player.getPosition().getX();
 		int y = player.getPosition().getY();

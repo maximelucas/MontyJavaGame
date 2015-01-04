@@ -36,7 +36,11 @@ public class BoardRenderer extends JPanel implements Observer {
 		}
 	}	
 	
-	
+	/*
+	 * show dialog bow when interaction occurs, 
+	 * to ask for user's interaction choice
+	 * return string choice
+	 */
 	public String askSkillChoice(Opponent opponent) {
     	int buttonPressed; // 0 joke, 1 fight, 2 steps
     	String choice = "";
@@ -82,7 +86,9 @@ public class BoardRenderer extends JPanel implements Observer {
     	return choice;
     }
 	
-	// implement Observer method update
+	/*
+	 * update the board display when turn is played
+	 */
 	public void update(Observable observable, Object object) {
 		Board board = (Board) observable;
 		

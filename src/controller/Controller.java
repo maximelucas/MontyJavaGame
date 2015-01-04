@@ -13,10 +13,15 @@ import model.Position;
 import model.Trophy;
 import view.MainWindow;
 
+
 public class Controller implements KeyListener, ActionListener {
 
 	Board board;
 	MainWindow gui;
+	
+	/*
+	 * link view and model when constructing controller
+	 */
 	
 	public Controller(Board board, MainWindow gui) {
 		this.board = board;
@@ -30,6 +35,9 @@ public class Controller implements KeyListener, ActionListener {
 		board.initBoard();
 	}
 	
+	/*
+	 * handle pressed button from the view
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
@@ -54,7 +62,9 @@ public class Controller implements KeyListener, ActionListener {
 	}
 	
 	
-	
+	/*
+	 * tell model to play turn when arrow key is pressed
+	 */
     @Override
     public void keyPressed(KeyEvent e) {
     	
@@ -103,6 +113,9 @@ public class Controller implements KeyListener, ActionListener {
     	;
 	}
     
+    /*
+     * show suited dialog box at the end of the game and return user choice as string
+     */
     public void handleEndOfGame() {
     	String title;
     	String message;

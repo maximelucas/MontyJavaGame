@@ -10,6 +10,9 @@ public class Player {
 	private int jokingSkill;
 	private String skillChoice;
 	
+	/*
+	 * set skills according to difficulty level
+	 */
 	public Player(Position position, String difficultyLevel) {
 		this.position = position;
 		switch(difficultyLevel) {
@@ -37,33 +40,7 @@ public class Player {
 			;
 		}
 	}
-	
-	public void setDifficulty(String difficultyLevel) {
-		switch(difficultyLevel) {
-		case "easy":	
-			this.stepsLeft = 150; 
-			this.fightingSkill = 5; 
-			this.jokingSkill = 5;
-			break;
-		case "medium": 
-			this.stepsLeft = 150; 
-			this.fightingSkill = 2; 
-			this.jokingSkill = 2;
-			break;	
-		case "difficult": 
-			this.stepsLeft = 100; 
-			this.fightingSkill = 2; 
-			this.jokingSkill = 2;
-			break;	
-		case "impossible": 
-			this.stepsLeft = 10; 
-			this.fightingSkill = 1; 
-			this.jokingSkill = 1;
-			break;
-		default:
-			;
-		}
-	}
+
 	
 	public void move(Position destination) {
 		setPosition(destination);
